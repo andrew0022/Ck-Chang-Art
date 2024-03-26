@@ -1,0 +1,45 @@
+/* Home.css */
+.content {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  width: 100%; /* Ensure the content area spans the full width */
+}
+
+.slides-wrapper {
+  display: flex;
+  transition: transform 1.5s ease-in-out; /* Adjust the transition as needed */
+}
+
+.slides-wrapper.no-transition {
+  transition: none !important; /* Disables transition */
+}
+
+.slide {
+  /* Styles for each slide */
+  width: 100%; /* Adjust based on your layout */
+  flex-shrink: 0; /* Prevents the images from shrinking */
+  transform: scale(0.6);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .slide {
+    transform: scale(0.8); /* Adjust scale for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    height: auto; /* Adjust height for very small screens */
+    min-height: 50vh; /* Provide a minimum height */
+  }
+  
+  .slide {
+    transform: scale(1); /* Adjust scale for very small screens */
+  }
+}

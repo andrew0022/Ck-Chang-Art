@@ -1,0 +1,125 @@
+/* Header.css */
+.sticky-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 1000;
+  padding: 10px 20px; /* Adjusted padding for aesthetic spacing */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Aligns items to the start of the container */
+  width: 100%; /* Ensure the container spans the full width */
+  max-width: 1200px; /* Adjust the max width as needed */
+  margin: 10px; /* Centers the container */
+  
+}
+
+.title {
+  margin: 0;
+  padding-right: 20px; /* Use padding to create space on the right */
+  font-weight: 300; 
+
+}
+
+.title a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 300;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  
+}
+
+.navigation a {
+  margin-left: 15px; /* Only margin-left to add space between links */
+  text-decoration: none;
+  color: #333;
+  font-weight: 300 !important;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .sticky-header {
+    padding: 5px 10px; /* Reduce padding on smaller screens */
+  }
+  
+  .header-container {
+    justify-content: space-between; /* Adjust alignment for smaller screens */
+  }
+  
+  .title, .navigation a {
+    font-size: 0.9rem; /* Reduce font size for better fit */
+  }
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    flex-direction: column; /* Stack elements vertically on very small screens */
+    align-items: center; /* Center items when stacked */
+  }
+
+  .navigation {
+    margin-top: 10px; /* Add some space between title and navigation */
+  }
+  
+  .navigation a {
+    margin: 5px 10px; /* Increase spacing for vertical layout, adjust as needed */
+    display: inline-block; /* Ensures margin applies correctly */
+  }
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Ensures dropdown links are well-formatted and stacked vertically */
+.dropdown-content a {
+  color: #333; /* Text color for dropdown links, ensure visibility against the background */
+  padding: 8px 12px; /* Adjust padding to ensure ample space around the text */
+  text-decoration: none; /* Removes underline from links */
+  display: block; /* Ensures each link takes up its own line */
+  white-space: nowrap; /* Prevents text wrapping */
+  margin-left: -5px;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1; /* Light grey background on hover for visual feedback */
+  color: #000; /* Optionally darken the text color on hover for contrast */
+}
+
+/* Additional styling for the dropdown to enhance appearance */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 100px; /* Adjusted to make the dropdown box smaller */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 1px 1px;
+  z-index: 1;
+  top: 100%; /* Ensures dropdown is right below the trigger */
+  left: 15px; /* Shifts the dropdown to the right */
+  margin-top: 0px; /* Ensures no gap between trigger and dropdown */
+}

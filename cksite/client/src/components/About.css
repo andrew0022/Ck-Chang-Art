@@ -1,0 +1,61 @@
+.about .background-image-container {
+  position: relative;
+  width: 100%;
+}
+
+.about .background-image-container .background-image {
+  width: 100%;
+  height: auto; /* Adjust height as needed, or set to a specific value */
+  display: block;
+}
+
+
+/* Adjustments for the smaller text box */
+.about .background-image-container .text-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 15px; /* Reduced padding */
+  border-radius: 8px;
+  width: 60%; /* Make the box narrower */
+  max-width: 500px; /* Adjust max width for smaller size */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: justify;
+  overflow: hidden; /* Ensures the content does not overflow the box */
+}
+
+/* Adjustments for the title to fit within the smaller text box */
+.about .background-image-container .text-box .title {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 1.5em; /* Smaller font size for the title */
+  text-align: center;
+  color: #333;
+  margin-bottom: 15px; /* Adjusted spacing */
+}
+
+/* Adjustments for the paragraph text to fit within the smaller text box */
+.about .background-image-container .text-box p {
+  font-family: 'Roboto', sans-serif; /* Assuming you want to keep the font consistent */
+  font-size: 0.9em; /* Smaller font size for the text */
+  margin-bottom: 10px; /* Adjusted spacing between paragraphs */
+}
+
+
+
+
+
+
+/* Assuming you've chosen a Google Font like Roboto for its professional appearance */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+.about .background-image-container .text-box .title {
+  font-family: 'Roboto', sans-serif; /* Use the imported Google Font */
+  font-weight: 700; /* Adjust weight as needed */
+  font-size: 2em; /* Adjust size as needed */
+  text-align: center; /* Center the title */
+  color: #333; /* Adjust color as needed */
+  margin-bottom: 20px; /* Adds some space between the title and the text */
+}
