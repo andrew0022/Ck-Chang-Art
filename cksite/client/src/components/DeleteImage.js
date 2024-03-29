@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AddImage = () => {
+const DeleteImage = () => {
     return (
         <div>
             {/* Add your code here */}
@@ -8,4 +8,4 @@ const AddImage = () => {
     );
 };
 
-export default AddImage;
+export default DeleteImage;

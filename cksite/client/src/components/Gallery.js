@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './Gallery.css';
+import UpdateAboutPage from './UpdateAboutPage';
 
 function Gallery() {
   const [galleries, setGalleries] = useState([]);
@@ -582,34 +583,12 @@ const handleNavClick = (section) => {
                     </div>
                   ))}
                 </div>
-                <div className="about-update-section">
-                  <form onSubmit={handleUpdateAbout}>
-                    <div className="form-group">
-                      <label htmlFor="aboutTitle">Update About Page Title</label>
-                      <input
-                        type="text"
-                        id="aboutTitle"
-                        value={aboutTitle}
-                        onChange={(e) => setAboutTitle(e.target.value)}
-                        required
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="aboutContent">Update About Page Content</label>
-                      <textarea
-                        id="aboutContent"
-                        value={aboutContent}
-                        onChange={(e) => setAboutContent(e.target.value)}
-                        required
-                      />
-                    </div>
-                    <button type="submit">Update About</button>
-                  </form>
-                </div>
-
+                <UpdateAboutPage></UpdateAboutPage>
               </div>
+              
 
             )}
+             
           </div>
         ) : (
           <p className="login-message">Please log in to view the gallery content.</p>

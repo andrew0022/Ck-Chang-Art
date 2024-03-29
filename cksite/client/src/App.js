@@ -7,6 +7,12 @@ import About from './components/About';
 import Home from './Home';
 import Contact from './components/Contact';
 import GalleryDisplay from './GalleryDisplay';
+import UpdateAboutPage from './components/UpdateAboutPage';
+import UpdateImage from './components/UpdateImage';
+import SelectGallery from './components/SelectGallery';
+import AddImage from './components/AddImage';
+import DeleteImage from './components/DeleteImage';
+
 
 
 function App() {
@@ -19,6 +25,14 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/loginregister" element={<LoginRegister />} />
         <Route path="/gallery" element={<Gallery />} />
+
+        {/*Make these protected so they can only be viewed when logged in*/}
+        <Route path="/updateaboutpage" element={<UpdateAboutPage />} />
+        <Route path="/updateimage" element={<UpdateImage />} />
+        <Route path="/selectgallery" element={<SelectGallery />} />
+        <Route path="/addimage" element={<AddImage />} />
+        <Route path="/deleteimage" element={<DeleteImage />} />
+
         <Route path="/gallery/:galleryName" element={<GalleryDisplay />} />
         {/* Other routes here */}
       </Routes>
