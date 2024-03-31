@@ -1,54 +1,56 @@
-.about-update-section {
-    margin-top: 50px;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border: 1px solid #e9ecef;
-    border-radius: 5px;
+.about-update-section-ab {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+  background-color: #ffffff; /* Unified white background */
+}
 
-    
-  }
-  
-  .about-update-section h2 {
-    margin-bottom: 20px;
-    color: #495057;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #6c757d;
-  }
-  
-  .form-group input[type="text"],
-  .form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 16px;
-    color: #495057;
-  }
-  
-  .form-group textarea {
-    height: 150px;
-    resize: vertical;
-  }
-  
-  button[type="submit"] {
-    padding: 10px 20px;
-    background-color: #218e33;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #0056b3;
-  }
-  
+.about-update-section-ab form {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  background-color: #ffffff; /* Unified white */
+  border: 1px solid #ccc; /* Unified border */
+  margin: 0 auto; /* Center the form horizontally with automatic margins */
+}
+
+.form-group-about {
+  margin-bottom: 20px;
+}
+
+.form-group-about label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group-about input[type="text"],
+.form-group-about textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc; /* Unified border */
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-group-about textarea {
+  height: 150px;
+  resize: vertical;
+}
+
+.about-update-section-ab button[type="submit"] {
+  background-color: #218e33; /* Unified green */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+}
+
+.about-update-section-ab button[type="submit"]:hover {
+  background-color: #0056b3; /* Adjusted for consistency */
+}

@@ -1,0 +1,62 @@
+.gallery-container-cn {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    padding: 20px;
+    background-color: #ffffff; /* Unified white */
+    border: 1px solid #ccc; /* Unified border */
+    border-radius: 8px;
+  }
+  
+  .gallery-and-new-form-cn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .gallery-title-cn {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .form-container-cn {
+    width: 100%;
+  }
+  
+  .add-new-gallery-form-cn {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .add-new-gallery-form-cn input[type="text"] {
+    width: calc(100% - 20px); /* Account for padding */
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc; /* Unified border */
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .add-new-gallery-form-cn button[type="submit"] {
+    width: 100%;
+    padding: 8px 16px;
+    background-color: #218e33; /* Unified green */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .add-new-gallery-form-cn button[type="submit"]:hover {
+    background-color: #0056b3; /* Adjusted for consistency */
+  }
+  
+  .login-message {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff4d4d; /* Unified red */
+  }
+  

@@ -2,28 +2,30 @@ html {
     overflow-x: hidden;
   }
   
-  button, .button { /* This selector targets both <button> elements and elements with the 'button' class */
+  
+  button, .button {
     cursor: pointer;
-    background-color: #218e33; /* Primary button color */
-    color: #ffffff; /* Text color */
+    background-color: #218e33; /* Standardized green */
+    color: #ffffff;
     border: none;
-    padding: 10px 20px; /* Adjust padding to fit your design */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 9px; /* Text size */
-    text-transform: uppercase; /* UPPERCASE text */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
-    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 9px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
   }
   
-  .selected-gallery-update {
-    width: 90%; 
+  .selected-gallery-update, .gallery-and-new-form-update {
+    width: 90%;
     margin: 0 auto;
     padding: 30px;
-    background-color: #ffffff;
-    border: 1px solid #e1e1e1;
+    background-color: #ffffff; /* Standardized white */
+    border: 1px solid #ccc; /* Standardized border */
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   }
+  
   
   .gallery-and-new-form-update{
  
@@ -86,6 +88,7 @@ html {
     border: 1px solid #e1e1e1;
     border-radius: 8px;
     padding: 20px;
+    margin-top: 70px;
     box-sizing: border-box;
     width: 200%;
   }
@@ -121,7 +124,7 @@ html {
     position: sticky; /* Make the nav stick to the top of the viewport */
     top: 0; /* Position it at the very top */
     z-index: 1000; /* Ensure it stays on top of other content */
-    background-color: #fff; /* Optional: set a background color to prevent content from showing through */
+    background-color: #ffffff; /* Optional: set a background color to prevent content from showing through */
   }
   
   .gallery-nav-update a {
@@ -190,7 +193,7 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -207,14 +210,73 @@ html {
   
   .close-modal-update {
     float: right;
-    border: none;
-    background: none;
-    font-size: 20px;
+    margin-top: 30px;
+    margin-right: 10px;
+    font-size: 10px;
     cursor: pointer;
   }
   
-
+  .image-update-form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff; /* Unified white */
+    border: 1px solid #ccc; /* Unified border */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
   
+  .image-update-form h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .form-group-update {
+    margin-bottom: 20px;
+  }
+  
+  .form-group-update label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .form-group-update input[type="text"],
+  .form-group-update textarea,
+  .form-group-update input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .form-group-update textarea {
+    height: 100px;
+    resize: vertical;
+  }
+  
+  .image-update-form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #218e33; /* Unified green */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .image-update-form button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  .update-image-title{
+    margin-left: 55px;
+
+  }
   /* Base styles for all devices */
   /* Add your existing CSS here without modification */
   
@@ -255,6 +317,7 @@ html {
   
     h2, h3, .button, select, input[type="text"], input[type="file"] {
       font-size: 14px; /* Smaller font size for better readability on small screens */
+      text-align: center;
     }
   
     .image-item-update img {

@@ -1,0 +1,111 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .gallery-title-update-add {
+    margin-bottom: 10px;
+    font-weight: bold; /* Making the label text bold */
+  }
+  
+  .form-container-update-add {
+    margin-bottom: 15px;
+  }
+  
+  select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc; /* Unified border */
+    cursor: pointer;
+    width: 100%; /* Ensure the select fills the container */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+  }
+  
+  .image-upload-form-add {
+    padding-top: 20px;
+  }
+  
+  .image-upload-form-add h3 {
+    color: #333;
+    font-size: 20px;
+  }
+  
+  .image-entry-add {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc; /* Unified border */
+    border-radius: 5px;
+  }
+  
+  .image-entry-add input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc; /* Unified border */
+  }
+  
+  .image-entry-add input[type="file"] {
+    margin-bottom: 10px;
+  }
+  
+  .remove-button-add {
+    background-color: #ff4d4d; /* Unified red */
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .remove-button-add:hover {
+    background-color: #cc0000; /* Darkened for hover effect */
+  }
+  
+  .form-actions-add {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .add-image-button-add,
+  .upload-images-button-add {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .add-image-button-add {
+    color: white;
+    background-color: #218e33; /* Unified green */
+  }
+  
+  .upload-images-button-add {
+    background-color: #218e33; /* Unified green */
+    color: white;
+  }
+  
+  .upload-images-button-add:hover {
+    background-color: #367c2b; /* Darkened for hover effect */
+  }
+  
+  .login-message-add {
+    color: #ff4d4d; /* Unified red */
+    font-size: 16px;
+  }
+  
+  .gallery-and-new-form-update-add, .image-upload-form-add {
+    max-width: 600px; /* Adjusted for consistency */
+    margin: auto; /* Center the element horizontally */
+    padding: 15px;
+    background-color: #ffffff; /* Adjusted for consistency */
+    border: 1px solid #ccc; /* Unified border */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .gallery-and-new-form-update-add {
+    border-radius: 5px; /* Adjusted for consistency */
+    background-color: #ffffff; /* Adjusted for consistency */
+    margin-top: 10vh; /* Adjusted for consistency */
+  }
+  

@@ -411,9 +411,9 @@ const UpdateAboutPage = () => {
     }
   };
     return (
-        <div className="about-update-section">
+        <div className="about-update-section-ab">
             <form onSubmit={handleUpdateAbout}>
-                <div className="form-group">
+                <div className="form-group-about">
                     <label htmlFor="aboutTitle">Update About Page Title</label>
                     <input
                         type="text"
@@ -423,7 +423,7 @@ const UpdateAboutPage = () => {
                         required
                     />
                 </div>
-                <div className="form-group">
+                <div className="form-group-about">
                     <label htmlFor="aboutContent">Update About Page Content</label>
                     <textarea
                         id="aboutContent"

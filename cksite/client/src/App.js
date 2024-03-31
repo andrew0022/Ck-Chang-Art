@@ -12,6 +12,7 @@ import UpdateImage from './components/UpdateImage';
 import SelectGallery from './components/SelectGallery';
 import AddImage from './components/AddImage';
 import DeleteImage from './components/DeleteImage';
+import CreateNewGallery from './components/CreateNewGallery';
 
 
 
@@ -32,6 +33,9 @@ function App() {
         <Route path="/selectgallery" element={<SelectGallery />} />
         <Route path="/addimage" element={<AddImage />} />
         <Route path="/deleteimage" element={<DeleteImage />} />
+        <Route path="/createnewgallery" element={<CreateNewGallery />} />
+        
+
 
         <Route path="/gallery/:galleryName" element={<GalleryDisplay />} />
         {/* Other routes here */}

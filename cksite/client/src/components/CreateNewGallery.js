@@ -1,16 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import './Gallery.css';
-import UpdateAboutPage from './UpdateAboutPage';
-import CreateNewGallery from './CreateNewGallery';
-import AddImage from './AddImage';
-import SelectGallery from './SelectGallery';
-import UpdateImage from './UpdateImage';
+import './CreateNewGallery.css'
 
-function Gallery() {
+
+function CreateNewGallery() {
   const [galleries, setGalleries] = useState([]);
-
-  const [selectedSection, setSelectedSection] = useState('');
   const [selectedGallery, setSelectedGallery] = useState('');
   const [newGalleryName, setNewGalleryName] = useState('');
   const [imageEntries, setImageEntries] = useState([{ title: '', description: '', image: null, display: true, tags: [] }]);
@@ -380,37 +374,71 @@ function Gallery() {
   // Add the scrollToRef function
   const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 
-  const handleNavClick = (section) => {
-    setSelectedSection(section);
-  };
+// Assuming you have a ref for your sticky header
+// const headerRef = useRef(null);
 
-  return (
-    <div>
-      <nav className="gallery-nav">
-        <a onClick={() => handleNavClick('addImageEntry')}>Add New Gallery</a>
-        <a onClick={() => handleNavClick('updateGallery')}>Update Gallery</a>
-        <a onClick={() => handleNavClick('addImages')}>Add Images</a>
-        <a onClick={() => handleNavClick('updateAboutPage')}>Update About</a>
-      </nav>
+const handleNavClick = (section) => {
+  const headerHeight = document.querySelector('.gallery-nav').offsetHeight; // Get the header's height
+  const yOffset = -headerHeight; // You want to scroll up by the height of the header
 
-      {isAuthenticated ? (
+  let elementPosition = 0;
+  switch (section) {
+    case 'gallerySelection':
+      elementPosition = gallerySelectionRef.current.offsetTop + yOffset;
+      window.scrollTo({ top: elementPosition, behavior: 'smooth' });
+      break;
+    case 'addImageEntry':
+      elementPosition = addImageEntryRef.current.offsetTop + yOffset;
+      window.scrollTo({
+        top: 240,
+        behavior: 'smooth' // Optional: adds smooth scrolling effect
+      });
+      break;
+    case 'deleteGalleryImages':
+      elementPosition = deleteGalleryImagesRef.current.offsetTop + yOffset;
+      window.scrollTo({ top: elementPosition, behavior: 'smooth' });
+      break;
+    default:
+      break;
+    case 'updateAboutPage':
+      elementPosition = addImageEntryRef.current.offsetTop + yOffset;
+      window.scrollTo({
+        top: 2000,
+        behavior: 'smooth' // Optional: adds smooth scrolling effect
+      });
+      break;
+    
+  }
+};
+
+    return (
         <div>
-          <header className="gallery-header" ref={gallerySelectionRef}>
-            <h2>
-              <span style={{ marginRight: '10px' }}>Gallery Manager</span>
-              <button className="logout-button" onClick={handleLogout}>Log Out</button>
-            </h2>
-          </header>
-          {selectedSection === 'addImageEntry' && <CreateNewGallery />}
-          {selectedSection === 'addImages' && <AddImage />}
-          {selectedSection === 'updateGallery' && <UpdateImage />}
-          {selectedSection === 'updateAboutPage' && <UpdateAboutPage />}
+            <div className="gallery-container-cn">
+        {isAuthenticated ? (
+          <div>
+            <div className="gallery-and-new-form-cn">
+              <div className="gallery-title-cn">
+                <label htmlFor="gallerySelect">Add a new gallery</label>
+              </div>
+              <div className="form-container-cn">
+                <form className="add-new-gallery-form-cn" onSubmit={handleNewGallerySubmit}>
+                  <input
+                    type="text"
+                    placeholder="New Gallery Name"
+                    value={newGalleryName}
+                    onChange={(e) => setNewGalleryName(e.target.value)}
+                  />
+                  <button type="submit">Add New Gallery</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <p className="login-message">Please log in to view the gallery content.</p>
+        )}
+      </div>
         </div>
-      ) : (
-        <p className="login-message">Please log in to view the gallery content.</p>
-      )}
-    </div>
-  );
-}
+    );
+};
 
-export default Gallery;
+export default CreateNewGallery;
