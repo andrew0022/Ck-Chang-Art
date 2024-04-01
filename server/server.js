@@ -6,6 +6,14 @@ const jwt = require('jsonwebtoken');
 const app = express();
 const port = process.env.PORT || 3001;
 
+const fs = require('fs');
+const uploadDir = path.join(__dirname, 'uploads');
+
+if (!fs.existsSync(uploadDir)){
+  fs.mkdirSync(uploadDir);
+}
+
+
 
 app.use((req, res, next) => {
   console.log(`${req.method} request to ${req.url}`);
