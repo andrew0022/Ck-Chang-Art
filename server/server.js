@@ -4,9 +4,37 @@ const path = require('path');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
+
+
+app.use((req, res, next) => {
+  console.log(`${req.method} request to ${req.url}`);
+  next();
+});
 
 require('dotenv').config();
+
+const helmet = require('helmet');
+app.use(helmet());
+
+const rateLimit = require('express-rate-limit');
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100 // limit each IP to 100 requests per windowMs
+});
+
+app.use(limiter);
+
+const cors = require('cors');
+app.use(cors());
+
+const morgan = require('morgan');
+app.use(morgan('combined'));
+
+const compression = require('compression');
+app.use(compression());
+
 
 //connect to database
 const mongoose = require('mongoose');
