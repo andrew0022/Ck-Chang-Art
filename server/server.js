@@ -148,7 +148,7 @@ app.get('/api/images', async (req, res) => {
     }``
 });
 
-app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.post('/api/upload', verifyToken, upload.array('images', 10), async (req, res) => {
   try {
     if (!req.files || req.files.length === 0) {
