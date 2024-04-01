@@ -79,7 +79,8 @@ const imageSchema = new mongoose.Schema({
 // // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, '../client/build')));
+
 
 // Multer setup for image uploading
 const storage = multer.diskStorage({
