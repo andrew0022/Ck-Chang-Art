@@ -7,12 +7,10 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 const fs = require('fs');
-const uploadDir = path.join(__dirname, 'uploads');
-
-if (!fs.existsSync(uploadDir)){
-  fs.mkdirSync(uploadDir);
+const uploadsDir = '/tmp/uploads';
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
 }
-
 
 
 app.use((req, res, next) => {
@@ -93,7 +91,7 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 // Multer setup for image uploading
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploads/')
+      cb(null, '/tmp/uploads/')
     },
     filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
