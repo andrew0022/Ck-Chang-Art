@@ -215,7 +215,7 @@ app.post('/api/upload', verifyToken, upload.array('images', 10), async (req, res
         Bucket: process.env.AWS_S3_BUCKET_NAME,
         Key: `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`,
         Body: fileContent,
-        ACL: 'public-read',
+        //ACL: 'public-read',
       };
     
       // Upload the file to S3
