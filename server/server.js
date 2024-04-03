@@ -209,13 +209,17 @@ app.post('/api/upload', verifyToken, upload.array('images', 10), async (req, res
     const tags = req.body.tags;
 
     const uploadedImages = await Promise.all(req.files.map(async (file, index) => {
+      // Determine content type based on file extension
+      let contentType = 'application/octet-stream'; // Default content type
+      if (file.mimetype) contentType = file.mimetype;
+    
       const fileContent = fs.readFileSync(path.join('/tmp/uploads/', file.filename));
       
       const s3Params = {
         Bucket: process.env.AWS_S3_BUCKET_NAME,
         Key: `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`,
         Body: fileContent,
-        //ACL: 'public-read',
+        ContentType: contentType, // Set content type here
       };
     
       // Upload the file to S3
