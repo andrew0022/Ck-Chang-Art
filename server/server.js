@@ -4,7 +4,21 @@ const path = require('path');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const app = express();
+require('dotenv').config();
+
 const port = process.env.PORT || 3001;
+
+
+const AWS = require('aws-sdk');
+
+AWS.config.update({
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    region: process.env.AWS_REGION
+});
+
+const s3 = new AWS.S3();
+
 
 const fs = require('fs');
 const uploadsDir = '/tmp/uploads';
@@ -154,7 +168,35 @@ app.get('/api/images', async (req, res) => {
     }``
 });
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+//app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// app.post('/api/upload', verifyToken, upload.array('images', 10), async (req, res) => {
+//   try {
+//     if (!req.files || req.files.length === 0) {
+//       return res.status(400).json({ message: 'No files uploaded' });
+//     }
+
+//     // Assuming titles, descriptions, and tags are sent as arrays of strings
+//     const titles = req.body.titles;
+//     const descriptions = req.body.descriptions;
+//     const tags = req.body.tags; // No longer assuming it's a JSON array
+
+//     const uploadedImages = req.files.map((file, index) => ({
+//       title: titles[index],
+//       description: descriptions[index],
+//       imageUrl: `/uploads/${file.filename}`,
+//       galleryName: req.body.galleryName,
+//       tags: tags[index] ? tags[index].split(',') : [] // Split the string into an array
+//     }));
+
+//     const savedImages = await Image.create(uploadedImages);
+//     res.status(201).json(savedImages);
+//   } catch (error) {
+//     console.error('Error uploading image:', error);
+//     res.status(500).json({ message: 'Internal Server Error' });
+//   }
+// });
+
+// Assuming you've configured AWS as shown earlier
 app.post('/api/upload', verifyToken, upload.array('images', 10), async (req, res) => {
   try {
     if (!req.files || req.files.length === 0) {
@@ -164,14 +206,27 @@ app.post('/api/upload', verifyToken, upload.array('images', 10), async (req, res
     // Assuming titles, descriptions, and tags are sent as arrays of strings
     const titles = req.body.titles;
     const descriptions = req.body.descriptions;
-    const tags = req.body.tags; // No longer assuming it's a JSON array
+    const tags = req.body.tags;
 
-    const uploadedImages = req.files.map((file, index) => ({
-      title: titles[index],
-      description: descriptions[index],
-      imageUrl: `/uploads/${file.filename}`,
-      galleryName: req.body.galleryName,
-      tags: tags[index] ? tags[index].split(',') : [] // Split the string into an array
+    const uploadedImages = await Promise.all(req.files.map(async (file, index) => {
+      // Set up the payload for S3
+      const s3Params = {
+        Bucket: process.env.AWS_S3_BUCKET_NAME,
+        Key: `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`,
+        Body: file.buffer, // Assuming `upload` is configured to keep files in memory
+        ACL: 'public-read', // Makes the file publicly readable
+      };
+
+      // Upload the file to S3
+      const s3Upload = await s3.upload(s3Params).promise();
+
+      return {
+        title: titles[index],
+        description: descriptions[index],
+        imageUrl: s3Upload.Location, // URL to access the file
+        galleryName: req.body.galleryName,
+        tags: tags[index] ? tags[index].split(',') : [],
+      };
     }));
 
     const savedImages = await Image.create(uploadedImages);
@@ -181,7 +236,6 @@ app.post('/api/upload', verifyToken, upload.array('images', 10), async (req, res
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
-
 
 
 
