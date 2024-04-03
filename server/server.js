@@ -35,7 +35,14 @@ app.use((req, res, next) => {
 require('dotenv').config();
 
 const helmet = require('helmet');
-app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      ...otherDirectives,
+      "img-src": ["'self'", "data:", "https://ck-chang-art.s3.amazonaws.com"]
+    },
+  })
+);
 
 const rateLimit = require('express-rate-limit');
 
