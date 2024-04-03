@@ -209,25 +209,27 @@ app.post('/api/upload', verifyToken, upload.array('images', 10), async (req, res
     const tags = req.body.tags;
 
     const uploadedImages = await Promise.all(req.files.map(async (file, index) => {
-      // Set up the payload for S3
+      const fileContent = fs.readFileSync(path.join('/tmp/uploads/', file.filename));
+      
       const s3Params = {
         Bucket: process.env.AWS_S3_BUCKET_NAME,
         Key: `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`,
-        Body: file.buffer, // Assuming `upload` is configured to keep files in memory
-        ACL: 'public-read', // Makes the file publicly readable
+        Body: fileContent,
+        ACL: 'public-read',
       };
-
+    
       // Upload the file to S3
       const s3Upload = await s3.upload(s3Params).promise();
-
+    
       return {
         title: titles[index],
         description: descriptions[index],
-        imageUrl: s3Upload.Location, // URL to access the file
+        imageUrl: s3Upload.Location,
         galleryName: req.body.galleryName,
         tags: tags[index] ? tags[index].split(',') : [],
       };
     }));
+    
 
     const savedImages = await Image.create(uploadedImages);
     res.status(201).json(savedImages);
