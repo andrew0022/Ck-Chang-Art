@@ -38,7 +38,6 @@ const helmet = require('helmet');
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      ...otherDirectives,
       "img-src": ["'self'", "data:", "https://ck-chang-art.s3.amazonaws.com"]
     },
   })
