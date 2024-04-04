@@ -285,6 +285,7 @@ function CreateNewGallery() {
         setGalleries([...galleries, newGallery]);
         setSelectedGallery(newGallery.name);
         setNewGalleryName('');
+        alert(`${newGallery.name} gallery has been added successfully! You may now add images to this gallery!`);
       } else {
         console.error('Adding new gallery failed');
       }

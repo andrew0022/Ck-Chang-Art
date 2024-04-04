@@ -262,6 +262,7 @@ const AddImage = () => {
         if (response.ok) {
           window.location.reload();
           console.log('Image uploaded successfully');
+          alert(`Image uploaded successfully! Please visit the public site to view your changes or go to the "Update Gallery" tab to make any changes!`);
           setImageEntries([{ title: '', description: '', image: null, display: true, tags: [] }]);
         } else {
           console.error('Image upload failed');

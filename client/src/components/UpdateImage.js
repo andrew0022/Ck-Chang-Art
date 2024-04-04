@@ -163,6 +163,7 @@ const UpdateImage = () => {
       if (response.ok) {
         // If the update is successful
         window.location.reload(); // Reload the page or fetch updated data
+        alert(`The image has been updated successfully!`);
         setShowUpdateModal(false); // Close the modal
       } else {
         console.error('Image update failed');

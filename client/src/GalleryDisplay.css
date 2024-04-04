@@ -32,16 +32,40 @@
     align-self: center;
   }
   
-  .search-input {
-    width: 10%; /* Full width */
-    align-items: center;
-    padding: 10px; /* Some padding */
-    margin: 20px 0; /* Some margin above and below */
-    box-sizing: border-box; /* Make sure padding does not affect the box size */
-    border: 2px solid #ccc; /* Border */
-    border-radius: 4px; /* Rounded borders */
-    margin-top: 0px;
-  }
+/* Styles for the search container */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0; /* Adds some space above and below the search container */
+}
+
+/* Styles for the search input */
+.search-input {
+  padding: 8px 15px;
+  font-size: 16px; /* Adjusts the font size */
+  border: 1px solid #ccc; /* Adds a subtle border */
+  border-radius: 20px 0 0 20px; /* Rounded corners on the left side */
+  outline: none; /* Removes the default focus outline */
+  width: 250px; /* Sets a specific width */
+}
+
+/* Styles for the search button */
+.search-button {
+  padding: 8px 15px;
+  font-size: 16px; /* Matches the font size of the input */
+  border: none; /* Removes the border */
+  background-color: #000000; /* Example: a blue background */
+  color: white; /* White text */
+  cursor: pointer; /* Changes the cursor to a pointer on hover */
+  border-radius: 0 20px 20px 0; /* Rounded corners on the right side */
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.search-button:hover {
+  background-color: #8a939d; /* Darker shade of blue on hover for the button */
+}
+
 
   h1{
 

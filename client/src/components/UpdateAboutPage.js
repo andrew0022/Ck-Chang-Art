@@ -44,7 +44,7 @@ const UpdateAboutPage = () => {
         });
     
         if (response.ok) {
-          alert('About section updated successfully.');
+          alert('About section updated successfully! Please visit the public site to view your changes.');
           // Optionally, clear form fields or fetch the latest About content here
         } else {
           alert('Failed to update the About section. Please try again.');
