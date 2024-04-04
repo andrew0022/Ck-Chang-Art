@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './LoginRegister.css'
 
 function LoginRegister() {
   const [isLogin, setIsLogin] = useState(true);
@@ -30,14 +31,14 @@ function LoginRegister() {
   };
 
   return (
-    <div>
-      <h2>{isLogin ? 'Login' : 'Register'}</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Username" required value={username} onChange={(e) => setUsername(e.target.value)} />
-        <input type="password" placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button type="submit">{isLogin ? 'Login' : 'Register'}</button>
+    <div className="login-register-container">
+      <h2 className="login-form-title">{isLogin ? 'Login' : 'Register'}</h2>
+      <form onSubmit={handleSubmit} className="login-register-form">
+        <input type="text" placeholder="Username" required value={username} onChange={(e) => setUsername(e.target.value)} className="login-form-input"/>
+        <input type="password" placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)} className="login-form-input"/>
+        <button type="submit" className="login-form-submit">{isLogin ? 'Login' : 'Register'}</button>
       </form>
-      <button onClick={() => setIsLogin(!isLogin)}>
+      <button onClick={() => setIsLogin(!isLogin)} className="switch-button">
         {isLogin ? 'Switch to Register' : 'Switch to Login'}
       </button>
     </div>

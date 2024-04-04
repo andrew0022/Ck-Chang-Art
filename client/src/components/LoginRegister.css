@@ -1,0 +1,57 @@
+.login-register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh; /* Makes sure the container takes at least the full height of the viewport */
+    padding: 20px; /* Adds some padding around the container */
+  }
+  
+  .login-form-title {
+    margin-left: 30px;
+    margin-bottom: 30px; /* Increases the bottom margin for more space below the title */
+    text-align: center;
+    min-width: 200px; 
+  }
+  
+  .login-register-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Allows the form to take the full width of its parent */
+    max-width: 400px; /* Ensures the form does not stretch too wide on larger screens */
+    gap: 15px; /* Creates space between form elements */
+  }
+  
+  .login-form-input {
+    width: 100%; /* Ensures input fields take the full width of the form */
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px; /* Adjusts font size for better readability */
+  }
+  
+  .login-form-submit, .switch-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    text-align: center; /* Ensures text is centered within the button */
+  }
+  
+  .login-form-submit:hover, .switch-button:hover {
+    background-color: #0056b3;
+    opacity: 0.9; /* Adds a slight transparency effect on hover */
+  }
+  
+  .switch-button {
+    margin-top: 20px; /* Adds some space between the form and the switch button */
+    background-color: #6c757d; /* Different color to distinguish it from the submit button */
+  }
+  
+  .switch-button:hover {
+    background-color: #565e64;
+  }
+  
