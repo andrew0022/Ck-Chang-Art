@@ -414,7 +414,6 @@ app.patch('/api/update-image/:galleryName/:imageId', verifyToken, upload.single(
         Key: `images-${Date.now()}${path.extname(req.file.originalname)}`,
         Body: fileContent,
         ContentType: req.file.mimetype,
-        ACL: 'public-read', // Make sure the file is publicly accessible
       };
 
       // Upload the file to S3
