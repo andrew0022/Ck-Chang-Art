@@ -357,6 +357,38 @@ app.get('/api/gallery/:galleryName/images', async (req, res) => {
 });
 
 
+// // Update Image Endpoint
+// app.patch('/api/update-image/:galleryName/:imageId', verifyToken, upload.single('image'), async (req, res) => {
+//   const { galleryName, imageId } = req.params;
+
+//   try {
+//     // Find the image by ID and gallery name
+//     const imageToUpdate = await Image.findOne({ _id: imageId, galleryName });
+
+//     if (!imageToUpdate) {
+//       return res.status(404).json({ message: 'Image not found' });
+//     }
+
+//     // Update the image properties
+//     imageToUpdate.title = req.body.title;
+//     imageToUpdate.description = req.body.description;
+//     imageToUpdate.tags = req.body.tags.split(',').map(tag => tag.trim());
+
+//     // If a new image file is uploaded, update the image URL
+//     if (req.file) {
+//       imageToUpdate.imageUrl = `/uploads/${req.file.filename}`;
+//     }
+
+//     // Save the updated image
+//     const updatedImage = await imageToUpdate.save();
+
+//     res.status(200).json(updatedImage);
+//   } catch (error) {
+//     console.error('Error updating image:', error);
+//     res.status(500).json({ message: 'An error occurred while updating the image' });
+//   }
+// });
+
 // Update Image Endpoint
 app.patch('/api/update-image/:galleryName/:imageId', verifyToken, upload.single('image'), async (req, res) => {
   const { galleryName, imageId } = req.params;
@@ -374,9 +406,25 @@ app.patch('/api/update-image/:galleryName/:imageId', verifyToken, upload.single(
     imageToUpdate.description = req.body.description;
     imageToUpdate.tags = req.body.tags.split(',').map(tag => tag.trim());
 
-    // If a new image file is uploaded, update the image URL
+    // If a new image file is uploaded, upload to S3 and update the image URL
     if (req.file) {
-      imageToUpdate.imageUrl = `/uploads/${req.file.filename}`;
+      const fileContent = fs.readFileSync(req.file.path);
+      const s3Params = {
+        Bucket: process.env.AWS_S3_BUCKET_NAME,
+        Key: `images-${Date.now()}${path.extname(req.file.originalname)}`,
+        Body: fileContent,
+        ContentType: req.file.mimetype,
+        ACL: 'public-read', // Make sure the file is publicly accessible
+      };
+
+      // Upload the file to S3
+      const s3Upload = await s3.upload(s3Params).promise();
+
+      // Update imageUrl with the new S3 URL
+      imageToUpdate.imageUrl = s3Upload.Location;
+
+      // Optionally, delete the temporary file saved by multer
+      fs.unlinkSync(req.file.path);
     }
 
     // Save the updated image
@@ -388,6 +436,7 @@ app.patch('/api/update-image/:galleryName/:imageId', verifyToken, upload.single(
     res.status(500).json({ message: 'An error occurred while updating the image' });
   }
 });
+
 
 // Backend - app.js
 
