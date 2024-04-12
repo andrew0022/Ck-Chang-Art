@@ -10,7 +10,7 @@ import UpdateImage from './UpdateImage';
 function Gallery() {
   const [galleries, setGalleries] = useState([]);
 
-  const [selectedSection, setSelectedSection] = useState('');
+  const [selectedSection, setSelectedSection] = useState('updateGallery');
   const [selectedGallery, setSelectedGallery] = useState('');
   const [newGalleryName, setNewGalleryName] = useState('');
   const [imageEntries, setImageEntries] = useState([{ title: '', description: '', image: null, display: true, tags: [] }]);
