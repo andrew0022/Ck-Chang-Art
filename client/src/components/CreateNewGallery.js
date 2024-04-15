@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import './CreateNewGallery.css'
 
 
-function CreateNewGallery() {
+function CreateNewGallery({ setSelectedSection }) {
   const [galleries, setGalleries] = useState([]);
   const [selectedGallery, setSelectedGallery] = useState('');
   const [newGalleryName, setNewGalleryName] = useState('');
@@ -286,6 +286,7 @@ function CreateNewGallery() {
         setSelectedGallery(newGallery.name);
         setNewGalleryName('');
         alert(`${newGallery.name} has been added successfully! You may now add images to this gallery!`);
+        setSelectedSection('updateGallery');
       } else {
         console.error('Adding new gallery failed');
       }

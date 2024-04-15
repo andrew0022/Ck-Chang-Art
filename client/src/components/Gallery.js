@@ -387,8 +387,8 @@ function Gallery() {
   return (
     <div>
       <nav className="gallery-nav">
-        <a onClick={() => handleNavClick('addImageEntry')}>Add New Gallery</a>
         <a onClick={() => handleNavClick('updateGallery')}>Update Gallery</a>
+        <a onClick={() => handleNavClick('addImageEntry')}>Add New Gallery</a>
         <a onClick={() => handleNavClick('addImages')}>Add Images</a>
         <a onClick={() => handleNavClick('updateAboutPage')}>Update About</a>
       </nav>
@@ -401,9 +401,9 @@ function Gallery() {
               <button className="logout-button" onClick={handleLogout}>Log Out</button>
             </h2>
           </header>
-          {selectedSection === 'addImageEntry' && <CreateNewGallery />}
-          {selectedSection === 'addImages' && <AddImage />}
           {selectedSection === 'updateGallery' && <UpdateImage />}
+          {selectedSection === 'addImageEntry' && <CreateNewGallery setSelectedSection={setSelectedSection} />}
+          {selectedSection === 'addImages' && <AddImage setSelectedSection={setSelectedSection}/> }
           {selectedSection === 'updateAboutPage' && <UpdateAboutPage />}
         </div>
       ) : (

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './AddImage.css'
 
-const AddImage = () => {
+const AddImage = ({ setSelectedSection }) => {
 
     const [galleries, setGalleries] = useState([]);
     const [selectedGallery, setSelectedGallery] = useState('');
@@ -264,6 +264,8 @@ const AddImage = () => {
           console.log('Image uploaded successfully');
           alert(`Image uploaded successfully! Please visit the public site to view your changes or go to the "Update Gallery" tab to make any changes!`);
           setImageEntries([{ title: '', description: '', image: null, display: true, tags: [] }]);
+          setSelectedSection('updateGallery');
+
         } else {
           console.error('Image upload failed');
         }
