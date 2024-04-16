@@ -435,10 +435,32 @@ const UpdateImage = () => {
               <div className="gallery-title-update">
                 <h3>
                   <span style={{ marginRight: '10px' }}>{selectedGallery}</span>
-                  <button style={{ marginRight: '10px' }} onClick={() => handleDeleteGallery(selectedGallery)}>
+                  <button
+                    style={{
+                      marginRight: '10px',
+                      padding: '5px 10px', // Reduced padding
+                      fontSize: '12px', // Smaller font size
+                      minWidth: 'auto', // Remove any minimum width restrictions
+                      maxWidth: '125px', // Ensure button does not exceed a certain width
+                      whiteSpace: 'nowrap',
+                    }}
+                    onClick={() => handleDeleteGallery(selectedGallery)}
+                  >
                     Delete Gallery
                   </button>
-                  <button onClick={handleDeleteSelected}>Delete All Selected</button>
+                  <button
+                    style={{
+                      padding: '5px 10px', // Consistent reduced padding
+                      fontSize: '12px', // Consistent smaller font size
+                      minWidth: 'auto', // Remove any minimum width restrictions
+                      maxWidth: '150px', // Consistent maximum width
+                      whiteSpace: 'nowrap',
+                    }}
+                    onClick={handleDeleteSelected}
+                  >
+                    Delete All Selected
+                  </button>
+
                 </h3>
               </div>
               <div className="image-list-update">
@@ -448,7 +470,7 @@ const UpdateImage = () => {
                     <div className="image-details-update">
                       <h4>{image.title}</h4>
                       <p>{image.description}</p>
-                      {/* <button className="delete-image-button" onClick={() => handleDeleteImage(image._id, image.title)}>Delete</button> */}
+                      { }
 
                       {showUpdateModal && (
                         <div className="update-modal-container-update">

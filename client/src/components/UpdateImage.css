@@ -279,58 +279,89 @@ html {
   }
   /* Base styles for all devices */
   /* Add your existing CSS here without modification */
-  
-  /* iPhones in portrait & landscape */
-  @media only screen and (max-width: 428px) {
-    /* Adjustments for smaller screens, applicable to all iPhones in portrait orientation */
-    .gallery-container-update, .image-upload-form, .selected-gallery-update, .gallery-and-new-form-update {
-      flex-direction: column;
-      align-items: center;
-      width: 90%;
-      margin: 20px auto;
-      padding: 10px;
-    }
-  
-    .gallery-nav-update {
-      flex-direction: column;
-      width: 100%;
-      padding: 10px 0;
-    }
-  
-    .gallery-nav-update a {
-      margin: 5px 0; /* Add space between nav items */
-    }
-  
-    .form-container-update, .image-details-update {
-      flex-direction: column;
-      width: 100%;
-    }
-  
-    .image-list-update {
-      grid-template-columns: repeat(1, 1fr); /* Single column for images */
-    }
-  
-    .selected-gallery-update{
-      margin-top: 0;
-      margin-left: 0;
-    }
-  
-    h2, h3, .button, select, input[type="text"], input[type="file"] {
-      font-size: 14px; /* Smaller font size for better readability on small screens */
-      text-align: center;
-    }
-  
-    .image-item-update img {
-      width: 100%; /* Ensure images are fully responsive */
-      height: auto;
-    }
-  
-    .gallery-and-new-form-update, .selected-gallery-update {
-      max-width: none;
-    }
+ /* iPhones in portrait & landscape */
+@media only screen and (max-width: 428px) {
+  .gallery-container-update, .image-upload-form, .selected-gallery-update, .gallery-and-new-form-update {
+    flex-direction: column;
+    align-items: center; /* Ensures content within these containers is centered */
+    width: 90%;
+    margin: 20px auto;
+    padding: 10px;
+    box-sizing: border-box; /* This helps maintain width rules including padding */
   }
+
+  .gallery-nav-update {
+    flex-direction: column;
+    width: 100%; /* Full width */
+    padding: 10px 0; /* Top and bottom padding */
+  }
+
+  .gallery-nav-update a {
+    display: block; /* Ensures full-width clickable area */
+    margin: 5px 0; /* Space between items */
+    width: 100%; /* Full width */
+    text-align: center; /* Center text */
+  }
+
+  .form-container-update, .image-details-update {
+    flex-direction: column;
+    align-items: center; /* Center-align content within these divs */
+    width: 100%;
+  }
+
+  .image-list-update {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* Single column layout */
+    width: 100%; /* Full width */
+    justify-items: center; /* Center grid items */
+  }
+
+  .selected-gallery-update, .gallery-and-new-form-update {
+    width: 90%; /* Adjust width to be consistent */
+    margin: 20px auto; /* Centering */
+  }
+
+  h2, h3, .button, select, input[type="text"], input[type="file"] {
+    font-size: 14px;
+    text-align: center; /* Center-align text for better readability */
+  }
+
+  .image-item-update img {
+    width: 100%;
+    height: auto;
+  }
+}
+
   
   /* Specific adjustments for various iPhone sizes might go here if necessary, 
      targeting widths like 375px for iPhone 6/7/8 and 414px for iPhone 6+/7+/8+,
      although the above should suffice for a broad compatibility. */
   
+
+
+/* Media query for mini tablets */
+/* Media query for mini tablets */
+@media only screen and (min-width: 750px) and (max-width: 900px) {
+  .gallery-container-update, .image-upload-form, .selected-gallery-update, .gallery-and-new-form-update {
+    flex-direction: column;
+    align-items: center; /* Ensure items are centered */
+    width: 90%;
+    margin: 20px auto; /* Center the container */
+    padding: 10px;
+  }
+
+  .gallery-nav-update {
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .form-container-update, .image-details-update {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .image-list-update {
+    grid-template-columns: repeat(2, 1fr); /* Two columns for better use of space */
+  }
+}
