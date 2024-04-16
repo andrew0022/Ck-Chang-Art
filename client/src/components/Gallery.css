@@ -295,8 +295,7 @@ button[type="submit"]:hover {
 /* Add your existing CSS here without modification */
 
 /* iPhones in portrait & landscape */
-@media only screen and (max-width: 428px) {
-  /* Adjustments for smaller screens, applicable to all iPhones in portrait orientation */
+/* @media only screen and (max-width: 428px) {
   .gallery-container, .image-upload-form, .selected-gallery, .gallery-and-new-form {
     flex-direction: column;
     align-items: center;
@@ -312,7 +311,7 @@ button[type="submit"]:hover {
   }
 
   .gallery-nav a {
-    margin: 5px 0; /* Add space between nav items */
+    margin: 5px 0; 
   }
 
   .form-container, .image-details, .form-actions {
@@ -321,7 +320,7 @@ button[type="submit"]:hover {
   }
 
   .image-list {
-    grid-template-columns: repeat(1, 1fr); /* Single column for images */
+    grid-template-columns: repeat(1, 1fr); 
   }
 
   .selected-gallery, .image-upload-form {
@@ -330,22 +329,181 @@ button[type="submit"]:hover {
   }
 
   h2, h3, .button, select, input[type="text"], input[type="file"] {
-    font-size: 14px; /* Smaller font size for better readability on small screens */
+    font-size: 14px; 
   }
 
   .image-item img {
-    width: 100%; /* Ensure images are fully responsive */
+    width: 100%; 
     height: auto;
   }
 
   .gallery-and-new-form, .selected-gallery {
     max-width: none;
   }
+} */
+
+
+
+
+.hamburger-menu {
+  display: none; /* Hide hamburger menu on larger screens */
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 15px;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 1001; /* Ensure it is above other content */
 }
 
-/* Specific adjustments for various iPhone sizes might go here if necessary, 
-   targeting widths like 375px for iPhone 6/7/8 and 414px for iPhone 6+/7+/8+,
-   although the above should suffice for a broad compatibility. */
+.logout-button {
+  margin-left: 90%; /* Adjusted for visual fit */
+}
+
+/* Media query for iPhones and smaller devices */
+@media only screen and (max-width: 1100px) {
 
 
+  .hamburger-menu {
+    display: block;
+    position: fixed; /* Ensures menu is accessible from any scroll position */
+    top: 10px;
+    left: 10px;
+    z-index: 1200; /* Higher than the nav to ensure it's clickable */
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  .gallery-nav {
+    position: fixed;
+    top: 0; /* Align top to the top of the viewport */
+    left: 0;
+    width: 250px; /* Width of the sidebar */
+    height: 100%; /* Full height of the viewport */
+    background-color: #fff;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    transform: translateX(-100%); /* Start hidden to the left */
+    transition: transform 0.3s ease;
+    display: block;
+    padding-top: 50px; /* Space for the hamburger menu */
+    z-index: 1100; /* Ensure it overlays content */
+  }
+
+  .gallery-nav.open {
+    transform: translateX(0); /* Slide in */
+  }
+
+  .gallery-nav a {
+    display: block; /* Make each link full-width */
+    padding: 10px 20px; /* Padding for touch targets */
+    text-decoration: none; /* No underlines */
+    color: #333; /* Default text color */
+    border-bottom: 1px solid #eaeaea; /* Separator between items */
+    background: #fff; /* Background color */
+    transition: background-color 0.3s ease;
+  }
+
+  .section-addImageEntry {
+    margin-top: 125px;
+  }
+  
+  .section-addImages {
+    margin-top: 150px;
+  }
+  
+  .section-updateAboutPage {
+    margin-top: 125px;
+  }
+  
+  .section-updateGallery {
+  
+    margin-top: 150px; 
+  }
+
+  .logout-button {
+    margin-right: 15px; /* Adjusted for visual fit */
+    margin-top: 10%;
+    white-space: nowrap;
+  }
+
+}
+
+.title-gallery-manager{
+  display: block;
+  text-align: center;
+}
+
+/*iPad Vertical*/
+@media screen and (min-width: 700px) and (max-width: 1100px) and (min-height: 1000px) and (max-height: 1400px) {
+  .logout-button {
+    margin-right: 5vh; /* Adjusted for visual fit */
+    margin-top: 10%;
+    white-space: nowrap;
+  }
+
+  .title-gallery-manager{
+    display: block;
+    text-align: center;
+  }
+}
+
+/*iPad Mini Horizontals*/
+@media screen and (min-width: 1000px) and (max-width: 1099px) and (min-height: 700px) and (max-height: 1100px) {
+  .logout-button {
+    margin-right: 100px; /* Adjusted for visual fit */
+    margin-top: 10%;
+    white-space: nowrap;
+  }
+  .title-gallery-manager{
+    display: block;
+    text-align: center;
+  }
+}
+
+/*Regular iPhone*/
+@media screen and (min-width: 350) and (max-width: 400) and (min-height: 850) and (max-height: 900) {
+  .logout-button {
+    margin-right: 3vh; /* Adjusted for visual fit */
+    margin-top: 10%;
+    white-space: nowrap;
+  }
+  .title-gallery-manager{
+    display: block;
+    text-align: center;
+  }
+}
+
+/*iPhone Pro Max*/
+@media screen and (min-width: 400) and (max-width: 450) and (min-height: 900) and (max-height: 950) {
+  .logout-button {
+    margin-right: 3vh; /* Adjusted for visual fit */
+    margin-top: 10%;
+    white-space: nowrap;
+  }
+  .title-gallery-manager{
+    display: block;
+    text-align: center;
+  }
+
+}
+
+
+/*iPad horizontal*/
+@media screen and (min-width: 1100px) and (max-width: 1400px) and (min-height: 700px) and (max-height: 1100px) {
+  .logout-button {
+    margin-right: 3vh; /* Adjusted for visual fit */
+    white-space: nowrap;
+  }
+  .title-gallery-manager{
+    display: block;
+    text-align: center;
+  }
+}
+
+
+
+
+/*iPhone horizontal*/
+
+/*iPhone Vertical*/
 

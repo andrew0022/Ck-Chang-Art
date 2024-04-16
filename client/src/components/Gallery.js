@@ -8,7 +8,14 @@ import SelectGallery from './SelectGallery';
 import UpdateImage from './UpdateImage';
 
 function Gallery() {
+  
   const [galleries, setGalleries] = useState([]);
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   const [selectedSection, setSelectedSection] = useState('updateGallery');
   const [selectedGallery, setSelectedGallery] = useState('');
@@ -384,27 +391,36 @@ function Gallery() {
     setSelectedSection(section);
   };
 
+  const getSectionClassName = () => {
+    return `section-${selectedSection}`;
+  };
+
   return (
     <div>
-      <nav className="gallery-nav">
+      <div className="hamburger-menu" onClick={toggleSidebar}>
+        &#9776;
+      </div>
+      <nav className={`gallery-nav ${isSidebarOpen ? "open" : ""}`}>
         <a onClick={() => handleNavClick('updateGallery')}>Update Gallery</a>
         <a onClick={() => handleNavClick('addImageEntry')}>Add New Gallery</a>
         <a onClick={() => handleNavClick('addImages')}>Add Images</a>
         <a onClick={() => handleNavClick('updateAboutPage')}>Update About</a>
       </nav>
+      <button className="logout-button" onClick={handleLogout}>Log Out</button>
 
       {isAuthenticated ? (
         <div>
           <header className="gallery-header" ref={gallerySelectionRef}>
             <h2>
-              <span style={{ marginRight: '10px' }}>Gallery Manager</span>
-              <button className="logout-button" onClick={handleLogout}>Log Out</button>
+              <span className="title-gallery-manager">Gallery Manager</span>
             </h2>
           </header>
-          {selectedSection === 'updateGallery' && <UpdateImage />}
-          {selectedSection === 'addImageEntry' && <CreateNewGallery setSelectedSection={setSelectedSection} />}
-          {selectedSection === 'addImages' && <AddImage setSelectedSection={setSelectedSection}/> }
-          {selectedSection === 'updateAboutPage' && <UpdateAboutPage />}
+             <div className={`main-content ${getSectionClassName()}`}>
+              {selectedSection === 'updateGallery' && <UpdateImage />}
+              {selectedSection === 'addImageEntry' && <CreateNewGallery setSelectedSection={setSelectedSection} />}
+              {selectedSection === 'addImages' && <AddImage setSelectedSection={setSelectedSection}/> }
+              {selectedSection === 'updateAboutPage' && <UpdateAboutPage />}
+            </div>
         </div>
       ) : (
         <p className="login-message">Please log in to view the gallery content.</p>
