@@ -20,6 +20,11 @@
     
 }
 
+.contact-title{
+
+    text-align: center;
+}
+
 .contact-section form {
     display: flex;
     flex-direction: column;
@@ -54,4 +59,57 @@
     background-color: #e5e8e5;
 }
 
+@media (max-width: 1400px) {
+    .contact-section h2 {
+        margin-top: 10px;
+        margin-left: 50px;
+    }
+}
+
 /* Add additional responsive or specific styling as needed */
+@media (max-width: 768px) {
+    #contact {
+        margin-top: 120px; /* Reduced top margin on smaller screens */
+    }
+
+    .contact-section h2 {
+        margin-top: 30px;
+        margin-left: 20px;
+    }
+
+    .contact-section {
+        padding: 15px; /* Less padding for smaller screens */
+    }
+
+    .contact-section form {
+        align-items: stretch; /* Stretch form items to use available space */
+    }
+
+    .contact-section button {
+        width: 100%; /* Full width button on smaller screens */
+    }
+    .contact-title{
+
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-section {
+        box-shadow: none; /* Remove shadow on very small screens for a flatter design */
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    .contact-section h2 {
+        margin-top: 20px;
+        margin-left: 70px;
+        font-size: 18px; /* Smaller font size for very small screens */
+    }
+    .contact-form-box{
+        margin: 0 auto;
+        padding: 20px;
+    }
+  
+}

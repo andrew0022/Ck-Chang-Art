@@ -45,9 +45,6 @@
 
 
 
-
-
-
 /* Assuming you've chosen a Google Font like Roboto for its professional appearance */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 
@@ -58,4 +55,56 @@
   text-align: center; /* Center the title */
   color: #333; /* Adjust color as needed */
   margin-bottom: 20px; /* Adds some space between the title and the text */
+}
+
+.aboutText {
+  background: rgba(255, 255, 255, 0.85); /* Semi-transparent white background */
+  width: 80%; /* Set width to prevent text from being too wide */
+  margin: 0 auto; /* Center the block */
+  max-width: 800px; /* Maximum width can be adjusted based on design preference */
+  font-family: 'Open Sans', sans-serif; /* Assuming you want a sans-serif font */
+  line-height: 1.6; /* Adjust line height for readability */
+  text-align: justify; /* Justify text for clean edges */
+  text-indent: 20px; /* Indent the first line of paragraphs */
+  color: #333; /* Dark grey color for text */
+  margin-top: 100px;
+}
+
+.aboutFeaturedTitle {
+  font-family: 'Open Sans', sans-serif; /* You can choose a different font if you like */
+  font-size: 1.5em; /* Adjust font size as needed for it to appear larger */
+  color: #333; /* Dark grey color for text, can be adjusted as needed */
+  text-align: center; /* Centers the text */
+  margin-top: 40px; /* Adds space above the title, adjust as needed */
+  margin-bottom: 20px; /* Adds space below the title, adjust as needed */
+}
+
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: calc(100% - 40px); /* Subtract total horizontal padding from width */
+  margin: 20px auto;
+  padding: 0 20px; /* Adds padding on both sides */
+  box-sizing: border-box;
+}
+
+.image-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) { /* Medium screens and down */
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 images per row */
+  }
+}
+
+@media (max-width: 600px) { /* Small screens and down */
+  .image-grid {
+    grid-template-columns: 1fr; /* 1 image per row */
+  }
 }

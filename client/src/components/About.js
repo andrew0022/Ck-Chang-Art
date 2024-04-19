@@ -5,6 +5,17 @@ import './About.css'; // Import the CSS styles
 
 const About = () => {
   const [aboutContent, setAboutContent] = useState({ title: '', content: '' });
+  const imageList = [ // Placeholder URLs for the images
+    backgroundImage,
+    backgroundImage,
+    backgroundImage,
+    backgroundImage,
+    backgroundImage,
+    backgroundImage,
+    backgroundImage,
+    backgroundImage,
+    backgroundImage
+  ];
 
   useEffect(() => {
     const fetchAboutContent = async () => {
@@ -21,10 +32,15 @@ const About = () => {
       <Header />
       <div className="background-image-container">
         <img src={backgroundImage} alt="Nature background" className="background-image" />
-        <div className="text-box">
-          <h1 className="title">{aboutContent.title}</h1>
-          <p>{aboutContent.content}</p>
-        </div>
+        <p className='aboutText'>{aboutContent.content}</p>
+        <p className='aboutFeaturedTitle'>{aboutContent.title}</p>
+      </div>
+      <div className="image-grid">
+        {imageList.map((url, index) => (
+          <div key={index} className="image-item">
+            <img src={url} alt={`Featured Work ${index + 1}`} />
+          </div>
+        ))}
       </div>
     </div>
   );

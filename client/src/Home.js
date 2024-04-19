@@ -36,21 +36,33 @@ const Home = () => {
   }, [currentSlide, location]);
 
   useEffect(() => {
-  if (location.pathname === '/about' && !hasScrolledToAbout.current) {
-    const aboutSection = document.getElementById('about-section');
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      hasScrolledToAbout.current = true; // Mark that we've scrolled to the About section
+    if (location.pathname === '/about' && !hasScrolledToAbout.current) {
+      const aboutSection = document.getElementById('about-section');
+      if (aboutSection) {
+        const elementHeight = aboutSection.clientHeight;
+        const screenHeight = window.innerHeight;
+        let offset = elementHeight < screenHeight ? (screenHeight - elementHeight) / 2 : -700; // Dynamically adjust offset based on element height
+  
+        const scrollOffset = aboutSection.offsetTop - offset;
+  
+        window.scrollTo({
+          top: scrollOffset,
+          behavior: 'smooth'
+        });
+  
+        hasScrolledToAbout.current = false; // Mark that we've scrolled to the About section
+      }
     }
-  }
+  
+    // Reset the flag when the pathname changes, allowing re-scroll if returning to '/about'
+    return () => {
+      if (location.pathname !== '/about') {
+        hasScrolledToAbout.current = false;
+      }
+    };
+  }, [location, location.pathname]);
+  
 
-  // Reset the flag when the pathname changes, allowing re-scroll if returning to /about
-  return () => {
-    if (location.pathname !== '/about') {
-      hasScrolledToAbout.current = false;
-    }
-  };
-}, [location, location.pathname]);
 
   
   return (

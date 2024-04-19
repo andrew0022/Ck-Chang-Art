@@ -1,3 +1,7 @@
+body, .container {
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
 .gallery-container {
  
     display: grid;
@@ -72,3 +76,111 @@
     text-align: center;
     margin-top: 100px;
   }
+
+
+
+
+
+
+
+
+
+
+
+  /* Base styles */
+.gallery-container {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+  grid-template-columns: repeat(3, 1fr); /* Default to three columns for laptops and larger devices */
+}
+
+/* Media query for devices like iPad Mini */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .gallery-container {
+    width: calc(100% - 60px); /* Reduce width to prevent overflow, adjust 60px as needed */
+    margin: 0 auto; /* Centering the container */
+    padding-left: 20px; /* Balanced left padding */
+    padding-right: 40px; /* Increased right padding to create intentional extra space */
+}
+
+  /* Optionally, adjust the width of the search input and button to fit better */
+  .search-input, .search-button {
+      padding: 8px 10px; /* Slightly reduce padding */
+      font-size: 14px; /* Slightly reduce font size */
+  }
+
+  .image-container {
+      /* If necessary, reduce the fixed height or let it scale with content */
+      height: auto; /* Change to auto if fixed height is not critical */
+      padding: 10px; /* Reduce padding if needed */
+  }
+
+  .image-container img {
+      max-height: 95%; /* Slightly reduce to prevent overflow */
+  }
+}
+
+/* Tablets (devices with width between 768px and 1024px) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .gallery-container {
+      grid-template-columns: repeat(2, 1fr); /* Two columns for tablets */
+  }
+}
+
+/* iPhones and similar smartphones (devices with width up to 767px) */
+@media only screen and (max-width: 767px) {
+  .gallery-container {
+      grid-template-columns: repeat(1, 1fr); /* One column for smartphones */
+  }
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  align-self: center;
+}
+
+@media only screen and (max-width: 480px) {
+  body, html {
+    width: 100%; /* Ensures the body and html take full width */
+    max-width: 100%; /* Prevents any element from exceeding the screen width */
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+  }
+  .header-container {
+    flex-direction: column; /* Stack elements vertically for better space management */
+    justify-content: center; /* Center align items for aesthetic balance */
+    padding: 10px 0; /* Adjust padding for a tighter layout */
+  }
+
+  .gallery-container {
+    grid-template-columns: 1fr; /* Single column layout for galleries */
+    gap: 10px; /* Reduce gap for more compact layout */
+    padding: 0 10px; /* Adjusted to reduce padding but keep it symmetric on the sides */
+    box-sizing: border-box;
+  }
+
+  .image-container {
+    height: auto; /* Adjust height to maintain aspect ratio */
+    padding: 5px; /* Optional: add padding to prevent content from touching edges */
+
+  }
+
+  .image-container img {
+    width: 100%; /* Ensures the image scales to fit its container */
+    height: auto; /* Adjusts height automatically to maintain aspect ratio */
+    object-fit: cover; /* Covers the container, could adjust if needed */
+  }
+}

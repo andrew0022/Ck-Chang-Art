@@ -46,8 +46,8 @@ function Contact() {
         <div>
             <Header /> 
             <div id="contact" className="contact-section">
-                <h2>Contact Me</h2>
-                <form onSubmit={handleSubmit}>
+                <h2 className= 'contact-title'>Contact Me</h2>
+                <form className = 'contact-form-box' onSubmit={handleSubmit}>
                     <input
                         type="text"
                         name="firstName"

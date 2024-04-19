@@ -37,9 +37,11 @@
   .content {
     height: auto; /* Adjust height for very small screens */
     min-height: 50vh; /* Provide a minimum height */
+    width: 90%;
+    margin: auto;
   }
   
   .slide {
-    transform: scale(1); /* Adjust scale for very small screens */
+    transform: scale(0.9); /* Adjust scale for very small screens */
   }
 }

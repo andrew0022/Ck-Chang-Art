@@ -13,6 +13,7 @@ import SelectGallery from './components/SelectGallery';
 import AddImage from './components/AddImage';
 import DeleteImage from './components/DeleteImage';
 import CreateNewGallery from './components/CreateNewGallery';
+import Header from './components/Header';
 
 
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/loginregister" element={<LoginRegister />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/header" element={<Header />} />
 
         {/*Make these protected so they can only be viewed when logged in*/}
         <Route path="/updateaboutpage" element={<UpdateAboutPage />} />

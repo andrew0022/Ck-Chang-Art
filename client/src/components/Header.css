@@ -1,4 +1,4 @@
-/* Header.css */
+/* Original styles from your CSS */
 .sticky-header {
   position: fixed;
   top: 0;
@@ -16,14 +16,12 @@
   width: 100%; /* Ensure the container spans the full width */
   max-width: 1200px; /* Adjust the max width as needed */
   margin: 10px; /* Centers the container */
-  
 }
 
 .title {
   margin: 0;
   padding-right: 20px; /* Use padding to create space on the right */
-  font-weight: 300; 
-
+  font-weight: 300;
 }
 
 .title a {
@@ -35,7 +33,6 @@
 .navigation {
   display: flex;
   align-items: center;
-  
 }
 
 .navigation a {
@@ -45,81 +42,130 @@
   font-weight: 300 !important;
 }
 
-/* Media queries for responsiveness */
-@media (max-width: 768px) {
-  .sticky-header {
-    padding: 5px 10px; /* Reduce padding on smaller screens */
-  }
-  
-  .header-container {
-    justify-content: space-between; /* Adjust alignment for smaller screens */
-  }
-  
-  .title, .navigation a {
-    font-size: 0.9rem; /* Reduce font size for better fit */
-  }
-}
-
-@media (max-width: 480px) {
-  .header-container {
-    flex-direction: column; /* Stack elements vertically on very small screens */
-    align-items: center; /* Center items when stacked */
-  }
-
-  .navigation {
-    margin-top: 10px; /* Add some space between title and navigation */
-  }
-  
-  .navigation a {
-    margin: 5px 10px; /* Increase spacing for vertical layout, adjust as needed */
-    display: inline-block; /* Ensures margin applies correctly */
-  }
-}
-
 .dropdown {
-  position: relative;
-  display: inline-block;
+  position: relative; /* Ensure the dropdown positioning context is set */
 }
 
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 12px 16px;
-  z-index: 1;
+  display: none; /* Initially hidden */
+  position: absolute; /* Positioned absolutely relative to its nearest positioned ancestor */
+  top: 100%; /* Directly below the dropdown button */
+  left: 10px; /* Start slightly to the right of the dropdown button */
+  width: 150%; /* Increase the width to 150% of the parent element */
+  background-color: #f9f9f9; /* Distinguishable background color */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25); /* Optional: Shadow for better visibility */
+  z-index: 1003; /* Ensures it's above the other content */
+  transition: all 0.3s ease; /* Smooth transition for dropdown effect */
+  padding: 5px 0; /* Adds padding inside the dropdown for better text visibility */
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown-content.show {
+  display: block; /* Display the dropdown when it should be visible */
+}
+
+
+.navigation a, .dropdown-content a {
+  text-decoration: none;
+  color: #333;
+  padding: 10px;
   display: block;
 }
 
-/* Ensures dropdown links are well-formatted and stacked vertically */
-.dropdown-content a {
-  color: #333; /* Text color for dropdown links, ensure visibility against the background */
-  padding: 8px 12px; /* Adjust padding to ensure ample space around the text */
-  text-decoration: none; /* Removes underline from links */
-  display: block; /* Ensures each link takes up its own line */
-  white-space: nowrap; /* Prevents text wrapping */
-  margin-left: -5px;
+.navigation a:hover, .dropdown-content a:hover {
+  background-color: #f1f1f1;
 }
 
-.dropdown-content a:hover {
-  background-color: #f1f1f1; /* Light grey background on hover for visual feedback */
-  color: #000; /* Optionally darken the text color on hover for contrast */
+/* Media queries for responsiveness */
+@media (max-width: 750px) {
+  .sticky-header {
+    padding: 5px 10px;
+  }
+  
+  .header-container {
+    justify-content: space-between;
+  }
+  
+  .title, .navigation a {
+    font-size: 0.9rem;
+  }
 }
 
-/* Additional styling for the dropdown to enhance appearance */
-.dropdown-content {
-  display: none;
+/* Header.css - Additions for left side hamburger menu and side panel */
+
+/* Original styles remain unchanged */
+
+@media (max-width: 480px) {
+  .header-container {
+    flex-direction: row; /* Changed from column for better alignment */
+    justify-content: space-between; /* Ensures space between elements */
+    align-items: center; /* Centers items vertically */
+    width: 100%; /* Ensures full width usage */
+    min-height: 20px;
+  }
+
+  .menu-icon {
+    display: flex; /* Show the hamburger icon */
+    flex-direction: column;
+    justify-content: space-between;
+    height: 24px;
+    width: 30px;
+    cursor: pointer;
+    position: absolute; /* Positioned absolutely to place it on the left */
+    left: 10px; /* Distance from the left */
+    top: 25px; /* Distance from the top */
+    z-index: 1002; /* Higher z-index to keep it above other content */
+  }
+
+  .bar {
+    height: 2px;
+    width: 100%;
+    background-color: #333;
+  }
+
+  .navigation {
+    position: fixed; /* Makes navigation fixed */
+    top: 0;
+    left: -100%; /* Starts off-screen */
+    height: 100%; /* Full height of the viewport */
+    width: 250px; /* Width of the side panel */
+    background-color: #fff; /* Background color of the panel */
+    box-shadow: 2px 0 8px rgba(0,0,0,0.2); /* Shadow for a layering effect */
+    transition: left 0.3s; /* Smooth transition for sliding effect */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns links to the left */
+    padding: 20px; /* Padding inside the navigation panel */
+  }
+
+  .navigation.open {
+    left: 0; /* Brings the navigation into view */
+  }
+  .title {
+    position: absolute; /* Allows positioning relative to nearest positioned ancestor */
+    left: 50%; /* Move to the middle */
+    transform: translateX(-50%); /* Adjust position to truly center based on its own width */
+    width: auto; /* Auto width to wrap content */
+    text-align: center; /* Ensures text is centered within the title element itself */
+  }
+}
+
+.close-btn {
   position: absolute;
-  background-color: #f9f9f9;
-  min-width: 100px; /* Adjusted to make the dropdown box smaller */
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 1px 1px;
-  z-index: 1;
-  top: 100%; /* Ensures dropdown is right below the trigger */
-  left: 15px; /* Shifts the dropdown to the right */
-  margin-top: 0px; /* Ensures no gap between trigger and dropdown */
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: transparent;  /* Ensures there is no background */
+  font-size: 24px;
+  cursor: pointer;
+  color: #333; /* Change as needed to match your design */
+  padding: 0; /* Removes any default padding */
+  line-height: 1; /* Adjust line-height to control the height of the button */
+  font-weight: bold; /* Optional: Makes the 'X' bold, enhancing visibility */
+  outline: none; /* Removes focus outline that browsers might add */
+}
+
+/* Ensure the close button is visible only when the navigation is open */
+.navigation.open .close-btn {
+  display: block; /* Ensure the button is only visible when the nav is open */
+  z-index: 1003; /* Higher z-index to keep it above other content */
 }
