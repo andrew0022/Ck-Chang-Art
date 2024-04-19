@@ -1,3 +1,4 @@
+
 .about .background-image-container {
   position: relative;
   width: 100%;
@@ -7,6 +8,24 @@
   width: 100%;
   height: auto; /* Adjust height as needed, or set to a specific value */
   display: block;
+}
+
+
+/* About.css */
+.contact-container {
+  display: flex;      /* Enables flexbox layout */
+  align-items: center; /* Centers the items vertically */
+  justify-content: space-between; /* Distributes space between and around content items */
+}
+
+.contact-box {
+  width: 50%;       /* Adjust width as necessary */  /* Keeps existing styling */
+}
+
+.contact-message {
+  width: 50%;       /* Adjust width as necessary */
+  padding: 20px;    /* Adds padding for spacing, adjust as needed */
+  text-align: center; /* Optional: centers the text inside the message box */
 }
 
 
@@ -67,15 +86,15 @@
   text-align: justify; /* Justify text for clean edges */
   text-indent: 20px; /* Indent the first line of paragraphs */
   color: #333; /* Dark grey color for text */
-  margin-top: 100px;
+  margin-top: 20px;
 }
 
-.aboutFeaturedTitle {
+.aboutFeaturedTitle, .contact-ck {
   font-family: 'Open Sans', sans-serif; /* You can choose a different font if you like */
   font-size: 1.5em; /* Adjust font size as needed for it to appear larger */
   color: #333; /* Dark grey color for text, can be adjusted as needed */
   text-align: center; /* Centers the text */
-  margin-top: 40px; /* Adds space above the title, adjust as needed */
+  margin-top: 70px; /* Adds space above the title, adjust as needed */
   margin-bottom: 20px; /* Adds space below the title, adjust as needed */
 }
 
@@ -96,6 +115,22 @@
   display: block;
 }
 
+.footer-content {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px 0;
+}
+
+.footer-content a {
+  color: #0000EE; /* Standard link color */
+  text-decoration: none; /* Optional: removes underline from links */
+}
+
+.footer-content a:hover {
+  text-decoration: underline; /* Re-add underline on hover for better UX */
+}
+
+
 /* Responsive adjustments */
 @media (max-width: 1024px) { /* Medium screens and down */
   .image-grid {
@@ -106,5 +141,18 @@
 @media (max-width: 600px) { /* Small screens and down */
   .image-grid {
     grid-template-columns: 1fr; /* 1 image per row */
+  }
+}
+
+
+/* Responsive adjustments for iPad (tablets) */
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column; /* Stack vertically instead of horizontally */
+  }
+
+  .contact-box, .contact-message {
+    width: 100%; /* Each takes full width of the container */
+    margin-bottom: 20px; /* Adds space between the stacked items */
   }
 }

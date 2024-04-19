@@ -46,7 +46,6 @@ function Contact() {
         <div>
             <Header /> 
             <div id="contact" className="contact-section">
-                <h2 className= 'contact-title'>Contact Me</h2>
                 <form className = 'contact-form-box' onSubmit={handleSubmit}>
                     <input
                         type="text"
@@ -71,13 +70,6 @@ function Contact() {
                         onChange={handleInputChange}
                         placeholder="Email"
                         required
-                    />
-                    <input
-                        type="text"
-                        name="instagramHandle"
-                        value={contactInfo.instagramHandle}
-                        onChange={handleInputChange}
-                        placeholder="Instagram Handle"
                     />
                     <textarea
                         name="message"

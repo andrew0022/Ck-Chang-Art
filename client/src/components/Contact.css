@@ -1,115 +1,76 @@
+/* Base styles for the contact section */
 .contact-section {
     max-width: 600px;
-    margin: 40px auto;
-    padding: 20px;
-    background: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    margin: 60px auto;
+    padding: 30px;
+    background: #ffffff; /* Switched to a plain white background for simplicity and professionalism */
+    font-family: 'Arial', sans-serif; /* Ensure text readability */
 }
 
-#contact{
-    margin-top: 170px;
-}
-
-.contact-section h2 {
-    margin-top: 60px;
-    margin-left: 60px;
-    margin-bottom: 20px;
-    color: #333;
-    font-weight: lighter;
-    
-}
-
-.contact-title{
-
-    text-align: center;
-}
-
+/* Style adjustments for the form and its elements */
 .contact-section form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    align-items: center; /* Add this line */
+    gap: 20px;
 }
 
 .contact-section input,
 .contact-section textarea {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 15px;
+    border: 2px solid #e2e2e2; /* Lighter border for a subtle look */
+    border-radius: 8px;
     width: 100%;
+    box-sizing: border-box; /* Ensures padding does not affect width */
+    transition: border-color 0.3s;
+}
+
+.contact-section input:focus,
+.contact-section textarea:focus {
+    border-color: #0056b3; /* Highlight focus with a deeper color */
+    outline: none;
 }
 
 .contact-section textarea {
-    height: 150px;
-    resize: vertical;
+    height: 120px; /* Optimized height */
+    resize: none; /* Disable resizing to maintain form structure */
 }
 
 .contact-section button {
-    padding: 10px 15px;
-    background-color: #ffffff;
+    padding: 10px 20px;
+    background-color: #0056b3; /* Consistent theme color */
     border: none;
-    border-radius: 4px;
-    color: rgb(0, 0, 0);
+    border-radius: 8px;
+    color: #ffffff;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .contact-section button:hover {
-    background-color: #e5e8e5;
+    background-color: #003d82; /* Darken button on hover for better interaction feedback */
+    transform: translateY(-2px); /* Slight lift effect */
 }
 
-@media (max-width: 1400px) {
-    .contact-section h2 {
-        margin-top: 10px;
-        margin-left: 50px;
-    }
-}
-
-/* Add additional responsive or specific styling as needed */
+/* Responsive Design Tweaks */
 @media (max-width: 768px) {
-    #contact {
-        margin-top: 120px; /* Reduced top margin on smaller screens */
-    }
-
-    .contact-section h2 {
-        margin-top: 30px;
-        margin-left: 20px;
-    }
-
     .contact-section {
-        padding: 15px; /* Less padding for smaller screens */
+        padding: 20px;
+        margin: 40px 20px;
     }
 
-    .contact-section form {
-        align-items: stretch; /* Stretch form items to use available space */
-    }
-
+    .contact-section input,
+    .contact-section textarea,
     .contact-section button {
-        width: 100%; /* Full width button on smaller screens */
-    }
-    .contact-title{
-
-        text-align: center;
+        font-size: 16px; /* Increase font size for better readability on smaller devices */
     }
 }
 
 @media (max-width: 480px) {
     .contact-section {
-        box-shadow: none; /* Remove shadow on very small screens for a flatter design */
-        max-width: 600px;
-        margin: 40px auto;
-        padding: 20px;
+        margin: 20px;
+        padding: 15px;
     }
 
-    .contact-section h2 {
-        margin-top: 20px;
-        margin-left: 70px;
-        font-size: 18px; /* Smaller font size for very small screens */
+    .contact-section button {
+        width: 100%; /* Full width button on very small screens */
     }
-    .contact-form-box{
-        margin: 0 auto;
-        padding: 20px;
-    }
-  
 }
