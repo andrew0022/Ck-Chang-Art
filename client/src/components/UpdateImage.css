@@ -277,6 +277,13 @@ html {
     margin-left: 55px;
 
   }
+
+  @media only screen and (min-width: 1400px) {
+    .checkbox-position{
+      margin-right: 30px;
+    }
+  }
+ 
   /* Base styles for all devices */
   /* Add your existing CSS here without modification */
  /* iPhones in portrait & landscape */

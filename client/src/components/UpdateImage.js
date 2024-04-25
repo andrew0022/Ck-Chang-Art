@@ -658,13 +658,13 @@ const UpdateImage = () => {
                       )}
 
                       <button onClick={() => handleUpdateButtonClick(image)}>Update</button>
-                      <label>
+                      <label className="checkbox-position">
                         <input
                           type="checkbox"
                           onChange={() => handleCheckboxChange(image._id)}
                           checked={selectedImages.includes(image._id)}
                         />
-                        Select
+                        
                       </label>
 
                     </div>
