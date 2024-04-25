@@ -608,7 +608,7 @@ const UpdateImage = () => {
                           left: 0,
                           width: '100%',
                           height: '100%',
-                          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Ensures a dark semi-transparent background
+                          backgroundColor: 'rgba(0, 0, 0, 0.25)', // Ensures a dark semi-transparent background
                           display: 'flex',
                           justifyContent: 'center',
                           alignItems: 'center',
