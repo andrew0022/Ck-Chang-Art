@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import './Gallery.css';
 import UpdateAboutPage from './UpdateAboutPage';
@@ -9,6 +10,15 @@ import UpdateImage from './UpdateImage';
 
 function Gallery() {
   
+
+
+  
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate('/'); // Assuming '/' is the route for the main site
+  };
+
   const [galleries, setGalleries] = useState([]);
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -395,18 +405,26 @@ function Gallery() {
     return `section-${selectedSection}`;
   };
 
+  
+
   return (
     <div>
-      <div className="hamburger-menu" onClick={toggleSidebar}>
-        &#9776;
-      </div>
+      {!isSidebarOpen && (
+        <div className="hamburger-menu" onClick={toggleSidebar}>
+          &#9776; {/* This is the hamburger icon */}
+        </div>
+      )}
       <nav className={`gallery-nav ${isSidebarOpen ? "open" : ""}`}>
+        {isSidebarOpen && <button className="close-btn" onClick={toggleSidebar}>×</button>}
         <a onClick={() => handleNavClick('updateGallery')}>Update Gallery</a>
         <a onClick={() => handleNavClick('addImageEntry')}>Add New Gallery</a>
         <a onClick={() => handleNavClick('addImages')}>Add Images</a>
         <a onClick={() => handleNavClick('updateAboutPage')}>Update About</a>
       </nav>
-      <button className="logout-button" onClick={handleLogout}>Log Out</button>
+      <div class="button-container">
+        <button onClick={goBack} className="back-button">Public Site</button>
+        <button className="logout-button" onClick={handleLogout}>Log Out</button>
+      </div>
 
       {isAuthenticated ? (
         <div>
