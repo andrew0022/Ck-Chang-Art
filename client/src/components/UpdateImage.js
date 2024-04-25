@@ -601,11 +601,23 @@ const UpdateImage = () => {
                       { }
 
                       {showUpdateModal && (
-                        <div className="update-modal-container-update">
+                        
+                        <div style={{
+                          position: 'fixed',
+                          top: 0,
+                          left: 0,
+                          width: '100%',
+                          height: '100%',
+                          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Ensures a dark semi-transparent background
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          zIndex: 1000  // High z-index to ensure it's on top
+                        }}className="update-modal-container-update">
                           <div className="update-modal-update">
                             <button className="close-modal-update" onClick={() => setShowUpdateModal(false)}>X</button>
                             <form onSubmit={handleUpdateImage} className="image-update-form">
-                              <h2 className= "update-image-title">Update Image</h2>
+                              <h2 className= "update-image-title"></h2>
                               <div className="form-group-update">
                                 <label htmlFor="title">Title:</label>
                                 <input
