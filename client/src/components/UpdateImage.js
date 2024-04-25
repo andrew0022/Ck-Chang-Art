@@ -25,6 +25,11 @@ const UpdateImage = () => {
   const [aboutTitle, setAboutTitle] = useState('');
   const [aboutContent, setAboutContent] = useState('');
 
+  const [showMoveModal, setShowMoveModal] = useState(false);
+  const [targetGallery, setTargetGallery] = useState('Scenery');
+
+
+
   const handleUpdateAbout = async (event) => {
     event.preventDefault();
 
@@ -413,6 +418,85 @@ const UpdateImage = () => {
     }
   };
 
+  // const handleMoveSelected = async () => {
+  //   if (!targetGallery || selectedImages.length === 0) {
+  //     alert('No gallery selected or no images chosen');
+  //     return;
+  //   }
+  
+  //   const confirmMove = window.confirm(`Are you sure you want to move the selected images to the gallery "${targetGallery}"?`);
+  //   if (!confirmMove) return;
+  
+  //   const token = localStorage.getItem('token');
+  //   try {
+  //     const response = await fetch('/api/move-images', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Authorization': `Bearer ${token}`
+  //       },
+  //       body: JSON.stringify({
+  //         selectedImageIds: selectedImages,
+  //         targetGalleryName: targetGallery,
+  //         duplicate: false  // Change this to true if duplication is intended
+  //       })
+  //     });
+  
+  //     if (response.ok) {
+  //       alert('Images moved successfully');
+  //       window.location.reload();
+  //     } else {
+  //       alert('Failed to move images');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error moving images:', error);
+  //     alert('An error occurred while moving images');
+  //   }
+  // };
+
+  const handleMoveOrDuplicateSelected = async (duplicate) => {
+
+
+    console.log("Target Gallery:", targetGallery); // Debug log
+    console.log("Selected Images:", selectedImages); // Debug log
+    if (!targetGallery || selectedImages.length === 0) {
+      alert('No gallery selected or no images chosen');
+      return;
+    }
+  
+    const action = duplicate ? 'duplicate' : 'move';
+    const confirmAction = window.confirm(`Are you sure you want to ${action} the selected images to the gallery "${targetGallery}"?`);
+    if (!confirmAction) return;
+  
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch('/api/move-images', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          selectedImageIds: selectedImages,
+          targetGalleryName: targetGallery,
+          duplicate  // This boolean determines the action on the server side
+        })
+      });
+  
+      if (response.ok) {
+        alert(`Images ${action}ed successfully`);
+        window.location.reload();  // Refresh the page to reflect changes
+      } else {
+        alert(`Failed to ${action} images`);
+      }
+    } catch (error) {
+      console.error(`Error ${action}ing images:`, error);
+      alert(`An error occurred while ${action}ing images`);
+    }
+  };
+
+
+
   return (
     <div>
       {isAuthenticated ? (
@@ -460,6 +544,50 @@ const UpdateImage = () => {
                   >
                     Delete All Selected
                   </button>
+                  <button
+                    style={{ marginLeft: '10px', padding: '5px 10px', fontSize: '12px', minWidth: 'auto', maxWidth: '150px', whiteSpace: 'nowrap', }}
+                    onClick={() => setShowMoveModal(true)}
+                  >
+                    Move All Selected
+                  </button>
+                  {showMoveModal && (
+                    <div style={{
+                      position: 'fixed',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      zIndex: 1000
+                    }}>
+                      <div style={{
+                        backgroundColor: 'white',
+                        padding: '20px',
+                        borderRadius: '10px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center'
+                      }}>
+                        <p>Select a gallery</p>
+                        <select
+                          value={targetGallery}
+                          onChange={e => setTargetGallery(e.target.value)}
+                          style={{ marginBottom: '20px', width: '300px', height: '40px', fontSize: '16px' }}
+                        >
+                          
+                          {galleries.map(gallery => (
+                            <option key={gallery.name} value={gallery.name}>{gallery.name}</option>
+                          ))}
+                        </select>
+                        <button onClick={() => handleMoveOrDuplicateSelected(false)} style={{ margin: '10px' }}>Confirm Move</button>
+                        <button onClick={() => handleMoveOrDuplicateSelected(true)} style={{ margin: '10px' }}>Duplicate</button>
+                        <button onClick={() => setShowMoveModal(false)} style={{ margin: '10px' }}>Cancel</button>
+                      </div>
+                    </div>
+                  )}
 
                 </h3>
               </div>
@@ -524,7 +652,7 @@ const UpdateImage = () => {
                           onChange={() => handleCheckboxChange(image._id)}
                           checked={selectedImages.includes(image._id)}
                         />
-                        Delete
+                        Select
                       </label>
 
                     </div>

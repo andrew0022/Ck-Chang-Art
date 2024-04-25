@@ -511,6 +511,48 @@ app.post('/api/about', verifyToken, async (req, res) => {
 });
 
 
+// Endpoint to move or duplicate selected images to another gallery
+app.post('/api/move-images', verifyToken, async (req, res) => {
+  const { selectedImageIds, targetGalleryName, duplicate } = req.body;
+
+  if (!Array.isArray(selectedImageIds) || selectedImageIds.length === 0) {
+    return res.status(400).json({ message: 'Invalid or empty selectedImageIds array' });
+  }
+  if (!targetGalleryName) {
+    return res.status(400).json({ message: 'Target gallery name is required' });
+  }
+
+  try {
+    const imagesToMove = await Image.find({ _id: { $in: selectedImageIds } });
+
+    if (duplicate) {
+      // Duplicate the images to the new gallery
+      const duplicatedImages = imagesToMove.map(image => {
+        const newImage = new Image({
+          ...image.toObject(),
+          _id: new mongoose.Types.ObjectId(), // Corrected line
+          galleryName: targetGalleryName,
+        });
+        return newImage.save(); // save new image
+      });
+      await Promise.all(duplicatedImages);
+      res.status(201).json({ message: `${duplicatedImages.length} images duplicated successfully to ${targetGalleryName}` });
+    } else {
+      // Move the images to the new gallery
+      const movePromises = imagesToMove.map(image => {
+        image.galleryName = targetGalleryName;
+        return image.save();
+      });
+      await Promise.all(movePromises);
+      res.status(200).json({ message: `${movePromises.length} images moved successfully to ${targetGalleryName}` });
+    }
+  } catch (error) {
+    console.error('Error processing image move/duplicate:', error);
+    res.status(500).json({ message: 'An error occurred while processing images' });
+  }
+});
+
+
 
     // Serve React Frontend
     app.get('*', (req, res) => {
