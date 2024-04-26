@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginRegister.css'
+import Header from './Header';
 
 function LoginRegister() {
   const [isLogin, setIsLogin] = useState(true);
@@ -31,16 +32,19 @@ function LoginRegister() {
   };
 
   return (
-    <div className="login-register-container">
-      <h2 className="login-form-title">{isLogin ? 'Login' : 'Register'}</h2>
-      <form onSubmit={handleSubmit} className="login-register-form">
-        <input type="text" placeholder="Username" required value={username} onChange={(e) => setUsername(e.target.value)} className="login-form-input"/>
-        <input type="password" placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)} className="login-form-input"/>
-        <button type="submit" className="login-form-submit">{isLogin ? 'Login' : 'Register'}</button>
-      </form>
-      <button onClick={() => setIsLogin(!isLogin)} className="switch-button">
-        {isLogin ? 'Switch to Register' : 'Switch to Login'}
-      </button>
+    <div>
+      <Header></Header>
+      <div className="login-register-container">
+        <h2 className="login-form-title">{isLogin ? 'Login' : 'Register'}</h2>
+        <form onSubmit={handleSubmit} className="login-register-form">
+          <input type="text" placeholder="Username" required value={username} onChange={(e) => setUsername(e.target.value)} className="login-form-input" />
+          <input type="password" placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)} className="login-form-input" />
+          <button type="submit" className="login-form-submit">{isLogin ? 'Login' : 'Register'}</button>
+        </form>
+        <button onClick={() => setIsLogin(!isLogin)} className="switch-button">
+          {isLogin ? 'No account? Register Here' : 'Already have an account? Login Here'}
+        </button>
+      </div>
     </div>
   );
 }

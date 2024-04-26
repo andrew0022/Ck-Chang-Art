@@ -57,7 +57,12 @@
   z-index: 1003; /* Ensures it's above the other content */
   transition: all 0.3s ease; /* Smooth transition for dropdown effect */
   padding: 5px 0; /* Adds padding inside the dropdown for better text visibility */
+  width: auto; /* Adjust width to accommodate columns */
+  column-count: 3; /* Number of columns */
+  column-gap: 10px; /* Space between columns */
+  white-space: nowrap;
 }
+
 
 .dropdown-content.show {
   display: block; /* Display the dropdown when it should be visible */

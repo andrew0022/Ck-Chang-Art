@@ -319,6 +319,7 @@ function Gallery() {
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsAuthenticated(false);
+    navigate("/loginregister");
   };
 
   const handleDeleteImage = async (imageId, imageName) => {

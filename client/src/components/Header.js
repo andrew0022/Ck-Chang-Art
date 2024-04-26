@@ -8,6 +8,7 @@ const Header = () => {
   const [galleryMenuOpen, setGalleryMenuOpen] = useState(false);
   const navRef = useRef(null);
   const menuIconRef = useRef(null);
+  
 
   useEffect(() => {
     const fetchGalleries = async () => {
