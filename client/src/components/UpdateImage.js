@@ -594,7 +594,7 @@ const UpdateImage = () => {
                 </h3>
               </div>
               <div className="image-list-update">
-                {([...(filteredImages || galleryImages[selectedGallery] || [])].reverse().map(image => (
+                {([...(filteredImages || galleryImages[selectedGallery] || [])].map(image => (
                   <div key={image._id} className="image-item-update">
                     <img src={image.imageUrl} alt={image.title} />
                     <div className="image-details-update">
