@@ -143,6 +143,8 @@ const UpdateImage = () => {
     setShowUpdateModal(true); // Show the modal for updating
   };
 
+  
+
   // This function handles the form submission within the modal
   const handleUpdateImage = async (event) => {
     event.preventDefault(); // Prevent the default form submission behavior
@@ -577,7 +579,7 @@ const UpdateImage = () => {
                           onChange={e => setTargetGallery(e.target.value)}
                           style={{ marginBottom: '20px', width: '300px', height: '40px', fontSize: '16px' }}
                         >
-                          
+
                           {galleries.map(gallery => (
                             <option key={gallery.name} value={gallery.name}>{gallery.name}</option>
                           ))}
@@ -600,62 +602,7 @@ const UpdateImage = () => {
                       <p>{image.description}</p>
                       { }
 
-                      {showUpdateModal && (
-                        
-                        <div style={{
-                          position: 'fixed',
-                          top: 0,
-                          left: 0,
-                          width: '100%',
-                          height: '100%',
-                          backgroundColor: 'rgba(0, 0, 0, 0.25)', // Ensures a dark semi-transparent background
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          zIndex: 1000  // High z-index to ensure it's on top
-                        }}className="update-modal-container-update">
-                          <div className="update-modal-update">
-                            <button className="close-modal-update" onClick={() => setShowUpdateModal(false)}>X</button>
-                            <form onSubmit={handleUpdateImage} className="image-update-form">
-                              <h2 className= "update-image-title"></h2>
-                              <div className="form-group-update">
-                                <label htmlFor="title">Title:</label>
-                                <input
-                                  type="text"
-                                  id="title"
-                                  defaultValue={updatingImage?.title}
-                                  required
-                                />
-                              </div>
-                              <div className="form-group-update">
-                                <label htmlFor="description">Description:</label>
-                                <textarea
-                                  id="description"
-                                  defaultValue={updatingImage?.description}
-                                  required
-                                />
-                              </div>
-                              <div className="form-group-update">
-                                <label htmlFor="tags">Tags (comma-separated):</label>
-                                <input
-                                  type="text"
-                                  id="tags"
-                                  defaultValue={updatingImage?.tags.join(', ')}
-                                  required
-                                />
-                              </div>
-                              <div className="form-group-update">
-                                <label htmlFor="image">Image:</label>
-                                <input
-                                  type="file"
-                                  id="image"
-                                />
-                              </div>
-                              <button type="submit">Update</button>
-                            </form>
-                          </div>
-                        </div>
-                      )}
+
 
                       <button onClick={() => handleUpdateButtonClick(image)}>Update</button>
                       <label className="checkbox-position">
@@ -664,13 +611,68 @@ const UpdateImage = () => {
                           onChange={() => handleCheckboxChange(image._id)}
                           checked={selectedImages.includes(image._id)}
                         />
-                        
+
                       </label>
 
                     </div>
                   </div>
                 )))}
               </div>
+              {showUpdateModal && (
+                <div style={{
+                  position: 'fixed',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  backgroundColor: 'rgba(0, 0, 0, 0.5)', // Ensures a dark semi-transparent background
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  zIndex: 1000  // High z-index to ensure it's on top
+                }} className="update-modal-container-update">
+                  <div className="update-modal-update">
+                    <button className="close-modal-update" onClick={() => setShowUpdateModal(false)}>X</button>
+                    <form onSubmit={handleUpdateImage} className="image-update-form">
+                      <h2 className="update-image-title"></h2>
+                      <div className="form-group-update">
+                        <label htmlFor="title">Title:</label>
+                        <input
+                          type="text"
+                          id="title"
+                          defaultValue={updatingImage?.title}
+                          required
+                        />
+                      </div>
+                      <div className="form-group-update">
+                        <label htmlFor="description">Description:</label>
+                        <textarea
+                          id="description"
+                          defaultValue={updatingImage?.description}
+                          required
+                        />
+                      </div>
+                      <div className="form-group-update">
+                        <label htmlFor="tags">Tags (comma-separated):</label>
+                        <input
+                          type="text"
+                          id="tags"
+                          defaultValue={updatingImage?.tags.join(', ')}
+                          required
+                        />
+                      </div>
+                      <div className="form-group-update">
+                        <label htmlFor="image">Image:</label>
+                        <input
+                          type="file"
+                          id="image"
+                        />
+                      </div>
+                      <button type="submit">Update</button>
+                    </form>
+                  </div>
+                </div>
+              )}
             </div>
           )}
 

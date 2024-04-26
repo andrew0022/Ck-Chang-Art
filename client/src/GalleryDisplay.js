@@ -45,7 +45,7 @@ const GalleryDisplay = () => {
       </h1>
 
       <div className="gallery-container">
-        {images.map((image, index) => (
+        {images.slice(0).reverse().map((image, index) => (
           <div key={index} className="image-container">
             <img src={image.imageUrl} alt={image.title} />
             <h3>{image.title}</h3>
