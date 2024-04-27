@@ -23,7 +23,7 @@ body, .container {
     flex-direction: column;
     align-items: center;
     justify-content: center; /* Center content vertically in the container */
-    height: 400px; /* Increased fixed height for each grid cell */
+    height: auto; /* Increased fixed height for each grid cell */
     background-color: #ffffff; /* Optional: Background color for the cell */
     border-radius: 8px; /* Optional: Adds rounded corners to the cell */
     overflow: hidden; /* Ensures the image does not overflow the container */
@@ -79,14 +79,6 @@ body, .container {
 
 
 
-
-
-
-
-
-
-
-
   /* Base styles */
 .gallery-container {
   display: grid;
@@ -135,16 +127,7 @@ body, .container {
   }
 }
 
-.image-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 400px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  overflow: hidden;
-}
+
 
 .image-container img {
   max-width: 100%;
