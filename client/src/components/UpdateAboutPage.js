@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './UpdateAboutPage.css';
 
 const UpdateAboutPage = () => {
+    const navigate = useNavigate();
     const [aboutTitle, setAboutTitle] = useState('');
     const [aboutContent, setAboutContent] = useState('');
     const [aboutImages, setAboutImages] = useState(new Array(9).fill().map(() => ({
@@ -22,6 +24,8 @@ const UpdateAboutPage = () => {
                 })));
             } catch (error) {
                 console.error('Failed to fetch about content:', error);
+                alert("Your session has timed out! Please login again to access this function!");
+                navigate('/loginregister');
             }
         };
 
@@ -80,11 +84,14 @@ const UpdateAboutPage = () => {
                 alert('About section updated successfully!');
                 // Optionally reload or update UI state here
             } else {
-                alert('Failed to update the About section.');
+              alert("Your session has timed out! Please login again to access this function!");
+              navigate('/loginregister');
+                
             }
         } catch (error) {
             console.error('Error updating the About section:', error);
-            alert('An error occurred while updating the About section.');
+            alert("Your session has timed out! Please login again to access this function!");
+            navigate('/loginregister');
         }
     };
 

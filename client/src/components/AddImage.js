@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
 import './AddImage.css'
+
+
 
 const AddImage = ({ setSelectedSection }) => {
 
+    const navigate = useNavigate();
     const [galleries, setGalleries] = useState([]);
     const [selectedGallery, setSelectedGallery] = useState('');
     const [newGalleryName, setNewGalleryName] = useState('');
@@ -111,9 +115,13 @@ const AddImage = ({ setSelectedSection }) => {
               // Optionally, refresh the page or fetch updated image list here
           } else {
               console.error('Error deleting selected images');
+              alert("Your session has timed out! Please login again to access this function!");
+              navigate('/loginregister');
           }
       } catch (error) {
           console.error('Error deleting selected images:', error);
+          alert("Your session has timed out! Please login again to access this function!");
+          navigate('/loginregister');
       }
   };
   
@@ -165,9 +173,13 @@ const AddImage = ({ setSelectedSection }) => {
           setShowUpdateModal(false); // Close the modal
         } else {
           console.error('Image update failed');
+          alert("Your session has timed out! Please login again to access this function!");
+          navigate('/loginregister');
         }
       } catch (error) {
         console.error('Error updating image:', error);
+        alert("Your session has timed out! Please login again to access this function!");
+        navigate('/loginregister');
       }
     };
     
@@ -268,9 +280,13 @@ const AddImage = ({ setSelectedSection }) => {
 
         } else {
           console.error('Image upload failed');
+          alert("Your session has timed out! Please login again to access this function!");
+          navigate('/loginregister');
         }
       } catch (error) {
         console.error('Error uploading image:', error);
+        alert("Your session has timed out! Please login again to access this function!");
+        navigate('/loginregister');
       }
     };
   
@@ -290,9 +306,13 @@ const AddImage = ({ setSelectedSection }) => {
           setNewGalleryName('');
         } else {
           console.error('Adding new gallery failed');
+          alert("Your session has timed out! Please login again to access this function!");
+          navigate('/loginregister');
         }
       } catch (error) {
         console.error('Error adding new gallery:', error);
+        alert("Your session has timed out! Please login again to access this function!");
+        navigate('/loginregister');
       }
     };
   
@@ -368,9 +388,13 @@ const AddImage = ({ setSelectedSection }) => {
           }
         } else {
           console.error('Gallery deletion failed');
+          alert("Your session has timed out! Please login again to access this function!");
+          navigate('/loginregister');
         }
       } catch (error) {
         console.error('Error deleting gallery:', error);
+        alert("Your session has timed out! Please login again to access this function!");
+        navigate('/loginregister');
       }
     };
   

@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
 import './CreateNewGallery.css'
 
 
+
 function CreateNewGallery({ setSelectedSection }) {
+  const navigate = useNavigate();
   const [galleries, setGalleries] = useState([]);
   const [selectedGallery, setSelectedGallery] = useState('');
   const [newGalleryName, setNewGalleryName] = useState('');
@@ -289,9 +292,13 @@ function CreateNewGallery({ setSelectedSection }) {
         setSelectedSection('updateGallery');
       } else {
         console.error('Adding new gallery failed');
+        alert("Your session has timed out! Please login again to access this function!");
+        navigate('/loginregister');
       }
     } catch (error) {
       console.error('Error adding new gallery:', error);
+      alert("Your session has timed out! Please login again to access this function!");
+      navigate('/loginregister');
     }
   };
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import './UpdateImage.css';
 
@@ -28,7 +29,7 @@ const UpdateImage = () => {
   const [showMoveModal, setShowMoveModal] = useState(false);
   const [targetGallery, setTargetGallery] = useState('Scenery');
 
-
+  const navigate = useNavigate();
 
   const handleUpdateAbout = async (event) => {
     event.preventDefault();
@@ -53,11 +54,16 @@ const UpdateImage = () => {
         alert('About section updated successfully.');
         // Optionally, clear form fields or fetch the latest About content here
       } else {
-        alert('Failed to update the About section. Please try again.');
+        alert("Your session has timed out! Please login again to access this function!");
+        navigate('/loginregister');
+       
+       //alert('Failed to update the About section. Please try again.');
       }
     } catch (error) {
       console.error('Error updating the About section:', error);
-      alert('An error occurred while updating the About section.');
+      alert("Your session has timed out! Please login again to access this function!");
+      navigate('/loginregister');
+
     }
   };
 
@@ -117,9 +123,13 @@ const UpdateImage = () => {
         // Optionally, refresh the page or fetch updated image list here
       } else {
         console.error('Error deleting selected images');
+        alert("Your session has timed out! Please login again to access this function!");
+        navigate('/loginregister');
       }
     } catch (error) {
       console.error('Error deleting selected images:', error);
+      alert("Your session has timed out! Please login again to access this function!");
+      navigate('/loginregister');
     }
   };
 
@@ -174,9 +184,13 @@ const UpdateImage = () => {
         setShowUpdateModal(false); // Close the modal
       } else {
         console.error('Image update failed');
+        alert("Your session has timed out! Please login again to access this function!");
+        navigate('/loginregister');
       }
     } catch (error) {
       console.error('Error updating image:', error);
+      alert("Your session has timed out! Please login again to access this function!");
+      navigate('/loginregister');
     }
   };
 
@@ -274,9 +288,13 @@ const UpdateImage = () => {
         setImageEntries([{ title: '', description: '', image: null, display: true, tags: [] }]);
       } else {
         console.error('Image upload failed');
+        alert("Your session has timed out! Please login again to access this function!");
+        navigate('/loginregister');
       }
     } catch (error) {
       console.error('Error uploading image:', error);
+      alert("Your session has timed out! Please login again to access this function!");
+      navigate('/loginregister');
     }
   };
 
@@ -296,9 +314,13 @@ const UpdateImage = () => {
         setNewGalleryName('');
       } else {
         console.error('Adding new gallery failed');
+        alert("Your session has timed out! Please login again to access this function!");
+        navigate('/loginregister');
       }
     } catch (error) {
       console.error('Error adding new gallery:', error);
+      alert("Your session has timed out! Please login again to access this function!");
+      navigate('/loginregister');
     }
   };
 
@@ -323,9 +345,13 @@ const UpdateImage = () => {
         window.location.reload();
       } else {
         console.error('Image deletion failed');
+        alert("Your session has timed out! Please login again to access this function!");
+        navigate('/loginregister');
       }
     } catch (error) {
       console.error('Error deleting image:', error);
+      alert("Your session has timed out! Please login again to access this function!");
+      navigate('/loginregister');
     }
   };
 
@@ -374,9 +400,13 @@ const UpdateImage = () => {
         }
       } else {
         console.error('Gallery deletion failed');
+        alert("Your session has timed out! Please login again to access this function!");
+        navigate('/loginregister');
       }
     } catch (error) {
       console.error('Error deleting gallery:', error);
+      alert("Your session has timed out! Please login again to access this function!");
+      navigate('/loginregister');
     }
   };
 
@@ -489,11 +519,13 @@ const UpdateImage = () => {
         alert(`Images ${action}ed successfully`);
         window.location.reload();  // Refresh the page to reflect changes
       } else {
-        alert(`Failed to ${action} images`);
+        alert("Your session has timed out! Please login again to access this function!");
+        navigate('/loginregister');
       }
     } catch (error) {
       console.error(`Error ${action}ing images:`, error);
-      alert(`An error occurred while ${action}ing images`);
+      alert("Your session has timed out! Please login again to access this function!");
+      navigate('/loginregister');
     }
   };
 
@@ -528,11 +560,13 @@ const handleSwapGalleries = async () => {
             
             window.location.reload(); // Refresh the page to show the new order
         } else {
-            alert('Failed to swap galleries');
+          alert("Your session has timed out! Please login again to access this function!");
+          navigate('/logloginregisterin');
         }
     } catch (error) {
         console.error('Error swapping galleries:', error);
-        alert('An error occurred while swapping galleries');
+        alert("Your session has timed out! Please login again to access this function!");
+        navigate('/loginregister');
     }
 };
 
