@@ -498,6 +498,45 @@ const UpdateImage = () => {
   };
 
 
+const [showSwapModal, setShowSwapModal] = useState(false);
+const [swapWithGallery, setSwapWithGallery] = useState('');
+  
+const handleSwapGalleries = async () => {
+    const token = localStorage.getItem('token');
+    const galleryId1 = galleries.find(g => g.name === selectedGallery)?._id;
+    const galleryId2 = galleries.find(g => g.name === swapWithGallery)?._id;
+
+    console.log(galleryId1);
+    console.log(galleryId2);
+    if (!galleryId1 || !galleryId2) {
+        alert('Invalid gallery selection');
+        return;
+    }
+
+    try {
+        const response = await fetch('/api/swap-galleries', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ galleryId1, galleryId2 })
+        });
+
+        if (response.ok) {
+            alert('Galleries swapped successfully');
+            
+            window.location.reload(); // Refresh the page to show the new order
+        } else {
+            alert('Failed to swap galleries');
+        }
+    } catch (error) {
+        console.error('Error swapping galleries:', error);
+        alert('An error occurred while swapping galleries');
+    }
+};
+
+
 
   return (
     <div>
@@ -551,6 +590,12 @@ const UpdateImage = () => {
                     onClick={() => setShowMoveModal(true)}
                   >
                     Move All Selected
+                  </button>
+                  <button
+                    style={{ marginLeft: '10px', padding: '5px 10px', fontSize: '12px', minWidth: 'auto', maxWidth: '200px', whiteSpace: 'nowrap', }}
+                    onClick={() => setShowSwapModal(true)}
+                  >
+                    Swap Gallery Position
                   </button>
                   {showMoveModal && (
                     <div style={{
@@ -673,6 +718,46 @@ const UpdateImage = () => {
                   </div>
                 </div>
               )}
+
+              {showSwapModal && (
+                <div style={{
+                  position: 'fixed',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  zIndex: 1000
+         
+                }}>
+                  <div style={{
+                    backgroundColor: 'white',
+                    padding: '20px',
+                    borderRadius: '10px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center'
+                  }}>
+                    <h4>Select a gallery to swap with:</h4>
+                    <select
+                      value={swapWithGallery}
+                      onChange={e => setSwapWithGallery(e.target.value)}
+                      style={{ width: '100%', padding: '10px', margin: '10px 0' }}
+                    >
+                      {galleries.filter(g => g.name !== selectedGallery).map(gallery => (
+                        <option key={gallery.name} value={gallery.name}>{gallery.name}</option>
+                      ))}
+                    </select>
+                    <button onClick={handleSwapGalleries} style={{alignContent: 'center', marginTop: '10px'}}>Confirm Swap</button>
+                    <button onClick={() => setShowSwapModal(false)} style={{ alignContent: 'center' ,marginLeft: '10px', marginTop: '15px' }}>Cancel</button>
+                  </div>
+                </div>
+              )}
+
+
             </div>
           )}
 

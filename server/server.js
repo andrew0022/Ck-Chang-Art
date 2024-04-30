@@ -203,7 +203,7 @@ app.get('/api/images', async (req, res) => {
 // });
 
 // Assuming you've configured AWS as shown earlier
-app.post('/api/upload', verifyToken, upload.array('images', 10), async (req, res) => {
+app.post('/api/upload', verifyToken, upload.array('images', 30), async (req, res) => {
   try {
     if (!req.files || req.files.length === 0) {
       return res.status(400).json({ message: 'No files uploaded' });
@@ -250,19 +250,19 @@ app.post('/api/upload', verifyToken, upload.array('images', 10), async (req, res
 });
 
 
-
-
 //Gallery schema and model
 const gallerySchema = new mongoose.Schema({
     name: String,
-    description: String
+    description: String,
+    position: Number  // This field represents the position in the list
   });
 const Gallery = mongoose.model('Gallery', gallerySchema);
+
 
 //fetch names of all galleries 
 app.get('/api/galleries', async (req, res) => {
     try {
-      const galleries = await Gallery.find().select('name');
+      const galleries = await Gallery.find().sort({ position: 1 });
       res.json(galleries);
     } catch (err) {
       res.status(500).json({ message: err.message });
@@ -273,8 +273,11 @@ app.get('/api/galleries', async (req, res) => {
   // Add Gallery Endpoint
   app.post('/api/add-gallery', async (req, res) => {
     try {
+      const maxPositionGallery = await Gallery.findOne().sort({ position: -1 });
+      const newPosition = maxPositionGallery ? maxPositionGallery.position + 1 : 1;
+
       const { name } = req.body;
-      const newGallery = new Gallery({ name });
+      const newGallery = new Gallery({ name, position: newPosition });
       await newGallery.save();
       res.status(201).json(newGallery);
     } catch (err) {
@@ -549,6 +552,43 @@ app.post('/api/move-images', verifyToken, async (req, res) => {
   } catch (error) {
     console.error('Error processing image move/duplicate:', error);
     res.status(500).json({ message: 'An error occurred while processing images' });
+  }
+});
+
+
+app.post('/api/swap-galleries', verifyToken, async (req, res) => {
+  const { galleryId1, galleryId2 } = req.body;
+
+  if (!galleryId1 || !galleryId2) {
+      return res.status(400).json({ message: 'Both gallery IDs must be provided.' });
+  }
+
+  try {
+      const session = await mongoose.startSession();
+      session.startTransaction();
+
+      const gallery1 = await Gallery.findById(galleryId1).session(session);
+      const gallery2 = await Gallery.findById(galleryId2).session(session);
+
+      if (!gallery1 || !gallery2) {
+          await session.abortTransaction();
+          session.endSession();
+          return res.status(404).json({ message: 'One or both galleries not found.' });
+      }
+
+      // Swap their positions
+      [gallery1.position, gallery2.position] = [gallery2.position, gallery1.position];
+
+      await gallery1.save({ session });
+      await gallery2.save({ session });
+
+      await session.commitTransaction();
+      session.endSession();
+
+      res.status(200).json({ message: 'Galleries swapped successfully.' });
+  } catch (error) {
+      console.error('Error swapping galleries:', error);
+      res.status(500).json({ message: 'An error occurred while swapping galleries.' });
   }
 });
 

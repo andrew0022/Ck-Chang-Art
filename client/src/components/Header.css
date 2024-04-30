@@ -99,7 +99,7 @@
 
 /* Original styles remain unchanged */
 
-@media (max-width: 480px) {
+@media (max-width: 750px) {
   .header-container {
     flex-direction: row; /* Changed from column for better alignment */
     justify-content: space-between; /* Ensures space between elements */

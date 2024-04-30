@@ -1,6 +1,6 @@
 .gallery-container-cn {
     position: fixed;
-    top: 30%;
+    top: 36%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 500px;
@@ -60,3 +60,42 @@
     color: #ff4d4d; /* Unified red */
   }
   
+  @media (max-width: 768px) {
+    .gallery-container-cn {
+      width: 80%; /* Makes the container width responsive */
+      top: 30%; /* Adjust positioning to be more visually appealing on smaller devices */
+      padding: 15px; /* Slightly less padding to allow more content to fit */
+    }
+  }
+  
+  @media (max-width: 1400px) {
+    .gallery-container-cn {
+
+      top: 25%; /* Adjust positioning to be more visually appealing on smaller devices */
+      padding: 15px; /* Slightly less padding to allow more content to fit */
+    }
+  }
+  @media (max-width: 1200px) {
+    .gallery-container-cn {
+
+      top: 35%; /* Adjust positioning to be more visually appealing on smaller devices */
+      padding: 15px; /* Slightly less padding to allow more content to fit */
+    }
+  }
+
+  @media (min-width: 1000px) and (max-width: 1100px) {
+    .gallery-container-cn {
+
+      top: 65%; /* Adjust positioning to be more visually appealing on smaller devices */
+      padding: 15px; /* Slightly less padding to allow more content to fit */
+    }
+  }
+
+  /* Adjustments for mobile devices */
+  @media (max-width: 480px) {
+    .gallery-container-cn {
+      width: 95%; /* Increases width to utilize more screen space */
+      top: 40%; /* Higher up to leave space for potentially virtual keyboards */
+      padding: 10px; /* Reduces padding to maximize use of space */
+    }
+  }

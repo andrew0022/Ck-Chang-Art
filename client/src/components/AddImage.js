@@ -434,7 +434,7 @@ const AddImage = ({ setSelectedSection }) => {
         </div>
         
         <form className="image-upload-form-add" onSubmit={handleFormSubmit}>
-              <h3 ref={addImageEntryRef}>Add Images in the {selectedGallery} Gallery</h3>
+              <h3 ref={addImageEntryRef}>Add Images in {selectedGallery}</h3>
               {imageEntries.map((entry, index) => (
                 entry.display && (
                   <div key={entry.id || index} className="image-entry-add">

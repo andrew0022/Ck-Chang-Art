@@ -22,6 +22,11 @@ button, .button { /* This selector targets both <button> elements and elements w
   padding: 20px;
 }
 
+.title-gallery-manager{
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
 
 .gallery-container {
   display: flex;
@@ -376,7 +381,7 @@ button[type="submit"]:hover {
 }
 
 /* Media query for iPhones and smaller devices */
-@media only screen and (max-width: 1100px) {
+@media only screen and  (min-width: 600px) and (max-width: 1100px) {
 
   .back-button, .logout-button {
     margin-right: 15px; /* Adjusted for visual fit */
@@ -450,10 +455,96 @@ button[type="submit"]:hover {
   .title-gallery-manager{
     display: block;
     text-align: center;
-    margin-top: 100px;
-    margin-left: 60px;
+    margin-top: 70%;
+    margin-left: 4vh;
   }
 }
+
+
+/* Media query for iPhones and smaller devices */
+@media only screen and (max-width: 600px) {
+
+  .back-button, .logout-button {
+    margin-right: 15px; /* Adjusted for visual fit */
+    margin-top: 10%;
+    white-space: nowrap;
+  }
+  .button-container{
+    margin-top: 10%;
+  }
+  .hamburger-menu {
+    display: block;
+    position: fixed; /* Ensures menu is accessible from any scroll position */
+    top: 10px;
+    left: 10px;
+    z-index: 1200; /* Higher than the nav to ensure it's clickable */
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  .gallery-nav {
+    position: fixed;
+    top: 0; /* Align top to the top of the viewport */
+    left: 0;
+    width: 250px; /* Width of the sidebar */
+    height: 100%; /* Full height of the viewport */
+    background-color: #fff;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    transform: translateX(-100%); /* Start hidden to the left */
+    transition: transform 0.3s ease;
+    display: block;
+    padding-top: 50px; /* Space for the hamburger menu */
+    z-index: 1100; /* Ensure it overlays content */
+  }
+
+  .gallery-nav.open {
+    transform: translateX(0); /* Slide in */
+  }
+
+  .gallery-nav a {
+    display: block; /* Make each link full-width */
+    padding: 10px 20px; /* Padding for touch targets */
+    text-decoration: none; /* No underlines */
+    color: #333; /* Default text color */
+    border-bottom: 1px solid #eaeaea; /* Separator between items */
+    background: #fff; /* Background color */
+    transition: background-color 0.3s ease;
+  }
+
+  .section-addImageEntry {
+    margin-top: 125px;
+  }
+  
+  .section-addImages {
+    margin-top: 150px;
+  }
+  
+  .section-updateAboutPage {
+    margin-top: 125px;
+  }
+  
+  .section-updateGallery {
+  
+    margin-top: 150px; 
+  }
+
+  .logout-button {
+    margin-right: 15px; /* Adjusted for visual fit */
+    margin-top: 10%;
+    white-space: nowrap;
+  }
+  .title-gallery-manager{
+    display: block;
+    text-align: center;
+    margin-top: 70%;
+    margin-left: 7vh;
+  }
+}
+
+
+
+
+
 
 .title-gallery-manager{
   display: block;
@@ -502,9 +593,9 @@ button[type="submit"]:hover {
     margin-top: 20px;
   }
   .title-gallery-manager{
-    display: block;
-    text-align: center;
+    margin-top: 200px !important; 
   }
+
 }
 
 

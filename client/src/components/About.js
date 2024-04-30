@@ -34,7 +34,7 @@ const About = () => {
       if (screenSize <= 600) { // For mobile devices
         scrollAmount = 100; // Adjust this value based on your layout and needs
       } else if (screenSize <= 1024) { // For tablets
-        scrollAmount = 300; // Adjust this value based on your layout and needs
+        scrollAmount = 600; // Adjust this value based on your layout and needs
       } else { // For desktops
         scrollAmount = 500; // Adjust this value based on your layout and needs
       }
@@ -106,7 +106,7 @@ const About = () => {
         ))}
       </div>
 
-      <p className='contact-ck'>Contact Me</p>
+      {/* <p className='contact-ck'>Contact Me</p> */}
       <div ref={contactRef} className="contact-container">
         <div className='contact-box'>
           <Contact />

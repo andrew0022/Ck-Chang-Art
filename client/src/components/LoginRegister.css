@@ -10,7 +10,7 @@
   
   .login-form-title {
     margin-top: 10%;
-    margin-left: 30px;
+    margin-left: 25px;
     margin-bottom: 30px; /* Increases the bottom margin for more space below the title */
     text-align: center;
     min-width: 200px; 
@@ -19,9 +19,11 @@
   .login-register-form {
     display: flex;
     flex-direction: column;
-    width: 100%; /* Allows the form to take the full width of its parent */
-    max-width: 400px; /* Ensures the form does not stretch too wide on larger screens */
-    gap: 15px; /* Creates space between form elements */
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px; /* Ensures the form doesn't stretch too wide */
+    gap: 15px;
   }
   
   .login-form-input {
@@ -57,3 +59,77 @@
     background-color: #565e64;
   }
   
+
+  /* Base styles are already defined above and apply to all devices */
+
+/* Media Queries for iPhone Screens */
+@media only screen and (max-width: 375px) { /* Most iPhones */
+  .login-register-container {
+    padding: 10px;
+    margin-top: 20%; /* Increase top margin for smaller screens */
+  }
+
+  .login-form-title {
+    margin-top: 5%; /* Reduce the top margin for smaller screens */
+    font-size: 18px; /* Smaller font size for smaller screens */
+  }
+
+  .login-form-input,
+  .login-form-submit, .switch-button {
+    font-size: 14px; /* Smaller font size for readability on small screens */
+  }
+}
+
+/* Media Queries for iPad Screens - Portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .login-register-container {
+    margin-top: 5%; /* Less margin for larger screens */
+    padding: 30px;
+  }
+
+  .login-form-title {
+    font-size: 22px; /* Larger font size for readability on larger screens */
+  }
+
+  .login-form-input,
+  .login-form-submit, .switch-button {
+    font-size: 18px; /* Larger font size for easier interaction */
+  }
+}
+
+/* Media Queries for iPad Screens - Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  .login-register-container {
+    margin-top: 2%; /* Even less margin for landscape mode */
+    padding: 20px;
+  }
+
+  .login-form-title {
+    font-size: 24px; /* Larger font size for easier reading */
+    margin-top: 5%;
+
+  }
+
+  .login-form-input,
+  .login-form-submit, .switch-button {
+    font-size: 18px;
+  }
+}
+
+/* Additional Media Queries for iPhone Screens in Horizontal Orientation */
+@media only screen and (max-width: 1000px) and (orientation: landscape) { /* Targeting iPhone horizontal view */
+  .login-form-title {
+    margin-top: 10%; /* Reduced top margin due to less vertical space */
+    margin-left: 3%; /* Aligning text more centrally by removing left margin */
+    font-size: 16px; /* Adjusting font size for horizontal view */
+  }
+
+  .login-register-container {
+    margin-top: 16%; /* Increasing top margin slightly to center vertically */
+    padding: 5px; /* Less padding to maximize space utilization */
+  }
+
+  .login-register-form {
+    max-width: 350px; /* Adjusting form width to better fit the horizontal view */
+  }
+}
