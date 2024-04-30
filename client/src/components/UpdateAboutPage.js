@@ -10,21 +10,22 @@ const UpdateAboutPage = () => {
     })));  // Initialize with placeholders for 9 images
 
     useEffect(() => {
-        const fetchAboutImages = async () => {
+        const fetchAboutContent = async () => {
             try {
-                const response = await fetch('/api/get-about-images');
+                const response = await fetch('/api/get-about-page');
                 const data = await response.json();
-                // Assume data is an array of URLs; convert to File or handle as URLs
+                setAboutTitle(data.title);
+                setAboutContent(data.content);
                 setAboutImages(aboutImages.map((item, index) => ({
                     ...item,
-                    url: data[index] || null  // Use existing or new data
+                    url: data.images[index] || null  // Use existing or new data
                 })));
             } catch (error) {
-                console.error('Failed to fetch about images:', error);
+                console.error('Failed to fetch about content:', error);
             }
         };
 
-        fetchAboutImages();
+        fetchAboutContent();
     }, []);
 
     const handleImageChange = (event, index) => {
@@ -83,7 +84,6 @@ const UpdateAboutPage = () => {
                         id="aboutTitle"
                         value={aboutTitle}
                         onChange={(e) => setAboutTitle(e.target.value)}
-                        required
                     />
                 </div>
                 <div className="form-group-about">
@@ -92,7 +92,6 @@ const UpdateAboutPage = () => {
                         id="aboutContent"
                         value={aboutContent}
                         onChange={(e) => setAboutContent(e.target.value)}
-                        required
                     />
                 </div>
                 {aboutImages.map((item, index) => (
@@ -104,7 +103,9 @@ const UpdateAboutPage = () => {
                             accept="image/*"
                             onChange={(e) => handleImageChange(e, index)}
                         />
-                        {item.url && <img src={item.url} alt={`About Image ${index + 1}`} style={{ width: '100px', height: '100px' }} />}
+                        {item.url && (
+                            <img src={item.url} alt={`About Image ${index + 1}`} style={{ width: '100px', height: '100px' }} />
+                        )}
                     </div>
                 ))}
                 <button type="submit">Update About</button>
