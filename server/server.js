@@ -646,7 +646,7 @@ app.post('/api/upload-about-image', verifyToken, upload.array('aboutImages', 9),
     if (aboutContent) {
       aboutContent.title = title;
       aboutContent.content = content;
-      aboutContent.images = uploadedImages; // Update the images array with new URLs
+      aboutContent.images.push(...uploadedImages);// Update the images array with new URLs
       await aboutContent.save();
     } else {
       const newAboutContent = new About({ title, content, images: uploadedImages });
