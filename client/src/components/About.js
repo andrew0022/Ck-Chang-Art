@@ -120,13 +120,13 @@ const About = () => {
           <Contact />
         </div>
         <div className="contact-message">
-          <p>Your message here</p>
+          <p>Get in Touch</p>
         </div>
       </div>
 
       <div className="footer-content">
         <p>© {new Date().getFullYear()} Your Company Name. All rights reserved.</p>
-        <Link to="/loginregister">Admin Login</Link>
+        <Link to="/loginregister" className='admin-login'>Administrative Login</Link>
       </div>
     </div>
   );

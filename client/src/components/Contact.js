@@ -45,7 +45,7 @@ function Contact() {
     return (
         <div>
             <Header /> 
-            <p className='contact-ck'>Contact Me</p>
+            {/* <p className='contact-ck'>Contact Me</p> */}
             <div id="contact" className="contact-section">
                 <form className = 'contact-form-box' onSubmit={handleSubmit}>
                     <input

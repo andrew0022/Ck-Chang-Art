@@ -11,6 +11,7 @@
 }
 
 
+
 /* About.css */
 .contact-container {
   display: flex;      /* Enables flexbox layout */
@@ -26,6 +27,9 @@
   width: 50%;       /* Adjust width as necessary */
   padding: 20px;    /* Adds padding for spacing, adjust as needed */
   text-align: center; /* Optional: centers the text inside the message box */
+  font-family: Arial, sans-serif; /* Change the font family */
+  font-size: 36px; /* Increase the font size */
+  color: #133f4c; /* Change the text color */
 }
 
 
@@ -118,10 +122,16 @@
   display: block;
 }
 
+.admin-login {
+  color: rgb(75, 75, 75) !important;
+}
+
+
 .footer-content {
   text-align: center;
   margin-top: 20px;
   padding: 10px 0;
+  color: #000000;
 }
 
 .footer-content a {
