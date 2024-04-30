@@ -28,16 +28,29 @@ const UpdateAboutPage = () => {
         fetchAboutContent();
     }, []);
 
+    // const handleImageChange = (event, index) => {
+    //     const newFile = event.target.files[0];  // Get the new file
+    //     const updatedImages = aboutImages.map((item, idx) => {
+    //         if (idx === index) {
+    //             return { ...item, file: newFile };  // Update the file at the specific index
+    //         }
+    //         return item;
+    //     });
+    //     setAboutImages(updatedImages);
+    // };
+
     const handleImageChange = (event, index) => {
-        const newFile = event.target.files[0];  // Get the new file
-        const updatedImages = aboutImages.map((item, idx) => {
-            if (idx === index) {
-                return { ...item, file: newFile };  // Update the file at the specific index
-            }
-            return item;
-        });
-        setAboutImages(updatedImages);
-    };
+      const newFile = event.target.files[0];  // Get the new file
+      setAboutImages(prevImages => {
+          return prevImages.map((item, idx) => {
+              if (idx === index) {
+                  return { ...item, file: newFile };  // Update the file at the specific index
+              }
+              return item;
+          });
+      });
+  };
+    
 
     const handleUpdateAbout = async (event) => {
         event.preventDefault();
