@@ -110,7 +110,7 @@ const UpdateAboutPage = () => {
                 </div>
                 {aboutImages.map((item, index) => (
                     <div key={index} className="form-group-about">
-                        <label htmlFor={`aboutImage${index}`}>About Image {index + 1}</label>
+                        <label htmlFor={`aboutImage${index}`}>Edit Image {index + 1}</label>
                         <input
                             type="file"
                             id={`aboutImage${index}`}
