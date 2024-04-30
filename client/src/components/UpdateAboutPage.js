@@ -39,14 +39,18 @@ const UpdateAboutPage = () => {
     //     setAboutImages(updatedImages);
     // };
 
-    const handleImageChange = (event, index) => {
-      const newFile = event.target.files[0];  // Get the new file
-      setAboutImages(prevImages => {
-          const updatedImages = [...prevImages]; // Create a copy of the previous images array
-          updatedImages[index] = { ...updatedImages[index], file: newFile }; // Update only the specified image slot
-          return updatedImages;
-      });
-  };
+
+
+  const handleImageChange = (event, index) => {
+    const newFile = event.target.files[0];  // Get the new file
+    if (newFile) { // Only update state if a file is selected
+        setAboutImages(prevImages => {
+            const updatedImages = [...prevImages]; // Create a copy of the previous images array
+            updatedImages[index] = { ...updatedImages[index], file: newFile }; // Update only the specified image slot
+            return updatedImages;
+        });
+    }
+};
     
 
     const handleUpdateAbout = async (event) => {
