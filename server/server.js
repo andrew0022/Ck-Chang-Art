@@ -628,7 +628,7 @@ app.post('/api/upload-about-image', verifyToken, upload.array('aboutImages', 9),
         Key: `aboutImages/${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`,
         Body: fileContent,
         ContentType: file.mimetype, // Set the appropriate content type based on the file type
-        ACL: 'public-read' // Optionally make the file publicly readable without credentials
+       
       };
 
       // Upload the file to S3
