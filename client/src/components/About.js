@@ -8,9 +8,8 @@ import Contact from './Contact';
 const About = () => {
   const textRef = useRef(null);
   const contactRef = useRef(null); // Ref for the contact section
-  const [aboutContent, setAboutContent] = useState({ title: '', content: '' });
+  const [aboutContent, setAboutContent] = useState({ title: '', content: '', images: [] });
   const [displayedContent, setDisplayedContent] = useState('');
-  const imageList = [backgroundImage, backgroundImage, backgroundImage, backgroundImage, backgroundImage, backgroundImage, backgroundImage, backgroundImage, backgroundImage];
   const location = useLocation();
 
   useEffect(() => {
@@ -24,6 +23,21 @@ const About = () => {
     fetchAboutContent();
   }, []);
 
+  useEffect(() => {
+    const fetchImages = async () => {
+      const response = await fetch('/api/get-about-images');
+      const data = await response.json();
+      if (data && data.length > 0) {
+        // Assuming the API returns an array of image URLs
+        setAboutContent(prevState => ({
+          ...prevState,
+          images: data.map(img => img.url)  // Assuming each image object has a 'url' property
+        }));
+      }
+    };
+
+    fetchImages();
+  }, []);
 
   useEffect(() => {
     if (location.pathname === '/about') {
@@ -48,9 +62,6 @@ const About = () => {
       }, 100);
     }
   }, [location]);
-
-
-
 
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
@@ -89,8 +100,6 @@ const About = () => {
     }
   }, [location]);
 
-
-  
   return (
     <div className="about" id="about-section">
       <Header />
@@ -99,14 +108,13 @@ const About = () => {
         <p className='aboutFeaturedTitle'>{aboutContent.title}</p>
       </div>
       <div className="image-grid">
-        {imageList.map((url, index) => (
+        {aboutContent.images.map((url, index) => (
           <div key={index} className="image-item">
             <img src={url} alt={`Featured Work ${index + 1}`} />
           </div>
         ))}
       </div>
 
-      {/* <p className='contact-ck'>Contact Me</p> */}
       <div ref={contactRef} className="contact-container">
         <div className='contact-box'>
           <Contact />

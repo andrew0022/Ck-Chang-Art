@@ -73,11 +73,12 @@ mongoose.connect(process.env.MONGODB_URI, {
     console.log(`Not connected`, e);
 });
 
-// MongoDB schema and model for About Section
 const aboutSchema = new mongoose.Schema({
   title: String,
-  content: String
+  content: String,
+  images: [String]  // Array of image URLs
 });
+
 const About = mongoose.model('About', aboutSchema);
 
 
@@ -589,6 +590,73 @@ app.post('/api/swap-galleries', verifyToken, async (req, res) => {
   } catch (error) {
       console.error('Error swapping galleries:', error);
       res.status(500).json({ message: 'An error occurred while swapping galleries.' });
+  }
+});
+
+
+
+
+// Get About Page Content
+app.get('/api/get-about-page', async (req, res) => {
+  try {
+    // Fetch the latest About content from the database
+    const aboutContent = await About.findOne().sort({ _id: -1 });
+    if (aboutContent) {
+      res.status(200).json(aboutContent);
+    } else {
+      // If no About content exists, return a default response
+      res.status(404).json({ message: 'No About content found' });
+    }
+  } catch (err) {
+    console.error("Error fetching About page content:", err);
+    res.status(500).json({ message: "An error occurred while fetching the About page content." });
+  }
+});
+
+// Update About Page Content and Images with AWS S3 Upload
+app.post('/api/upload-about-image', verifyToken, upload.array('aboutImages', 9), async (req, res) => {
+  const { title, content } = req.body;
+  if (!title || !content) {
+    return res.status(400).json({ message: "Title and content are required." });
+  }
+
+  try {
+    const uploadedImages = await Promise.all(req.files.map(async (file) => {
+      const fileContent = fs.readFileSync(file.path);
+      const s3Params = {
+        Bucket: process.env.AWS_S3_BUCKET_NAME,
+        Key: `aboutImages/${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`,
+        Body: fileContent,
+        ContentType: file.mimetype, // Set the appropriate content type based on the file type
+        ACL: 'public-read' // Optionally make the file publicly readable without credentials
+      };
+
+      // Upload the file to S3
+      const s3Upload = await s3.upload(s3Params).promise();
+
+      // Optionally, delete the temporary file saved by multer
+      fs.unlinkSync(file.path);
+
+      // Return the S3 URL to store in the database
+      return s3Upload.Location;
+    }));
+
+    // You can either update the existing About content or create a new one if it does not exist
+    const aboutContent = await About.findOne().sort({ _id: -1 });
+    if (aboutContent) {
+      aboutContent.title = title;
+      aboutContent.content = content;
+      aboutContent.images = uploadedImages; // Update the images array with new URLs
+      await aboutContent.save();
+    } else {
+      const newAboutContent = new About({ title, content, images: uploadedImages });
+      await newAboutContent.save();
+    }
+
+    res.status(200).json({ message: 'About page updated successfully', aboutContent });
+  } catch (err) {
+    console.error("Failed to update About page:", err);
+    res.status(500).json({ message: "An error occurred while updating the About page." });
   }
 });
 

@@ -87,6 +87,9 @@
   text-indent: 20px; /* Indent the first line of paragraphs */
   color: #333; /* Dark grey color for text */
   margin-top: 20px;
+
+
+  height: 150px; /* Set an appropriate fixed height */
 }
 
 .aboutFeaturedTitle, .contact-ck {
