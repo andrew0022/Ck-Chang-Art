@@ -747,6 +747,7 @@ const handleSwapGalleries = async () => {
                       onChange={e => setSwapWithGallery(e.target.value)}
                       style={{ width: '100%', padding: '10px', margin: '10px 0' }}
                     >
+                      <option value="" disabled>Pick a gallery below</option>
                       {galleries.filter(g => g.name !== selectedGallery).map(gallery => (
                         <option key={gallery.name} value={gallery.name}>{gallery.name}</option>
                       ))}
