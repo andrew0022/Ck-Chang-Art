@@ -27,7 +27,7 @@ const UpdateImage = () => {
   const [aboutContent, setAboutContent] = useState('');
 
   const [showMoveModal, setShowMoveModal] = useState(false);
-  const [targetGallery, setTargetGallery] = useState('Scenery');
+  const [targetGallery, setTargetGallery] = useState('Gallery 1');
 
   const navigate = useNavigate();
 
@@ -516,7 +516,7 @@ const UpdateImage = () => {
       });
   
       if (response.ok) {
-        alert(`Images ${action}ed successfully`);
+        alert(`Images moved successfully`);
         window.location.reload();  // Refresh the page to reflect changes
       } else {
         alert("Your session has timed out! Please login again to access this function!");
