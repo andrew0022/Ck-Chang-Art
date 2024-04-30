@@ -42,12 +42,9 @@ const UpdateAboutPage = () => {
     const handleImageChange = (event, index) => {
       const newFile = event.target.files[0];  // Get the new file
       setAboutImages(prevImages => {
-          return prevImages.map((item, idx) => {
-              if (idx === index) {
-                  return { ...item, file: newFile };  // Update the file at the specific index
-              }
-              return item;
-          });
+          const updatedImages = [...prevImages]; // Create a copy of the previous images array
+          updatedImages[index] = { ...updatedImages[index], file: newFile }; // Update only the specified image slot
+          return updatedImages;
       });
   };
     
