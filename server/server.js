@@ -38,7 +38,8 @@ const helmet = require('helmet');
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      "img-src": ["'self'", "data:", "https://ck-chang-art.s3.amazonaws.com"]
+      "img-src": ["'self'", "data:", "https://ck-chang-art.s3.amazonaws.com"],
+      connectSrc: ["'self'", "https://api.emailjs.com"],  // Allow AJAX requests to EmailJS
     },
   })
 );
