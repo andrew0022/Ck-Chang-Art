@@ -113,7 +113,7 @@ function Contact() {
                             padding: '10px 20px',
                             fontSize: '16px',
                             color: 'white',
-                            backgroundColor: 'blue',
+                            backgroundColor: 'black',
                             border: 'none',
                             borderRadius: '5px'
                         }}>Close</button>
