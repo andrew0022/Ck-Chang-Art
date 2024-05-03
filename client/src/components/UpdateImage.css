@@ -288,7 +288,7 @@ html {
   /* Base styles for all devices */
   /* Add your existing CSS here without modification */
  /* iPhones in portrait & landscape */
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 660px) {
   .gallery-container-update, .image-upload-form, .selected-gallery-update, .gallery-and-new-form-update {
     flex-direction: column;
     align-items: center; /* Ensures content within these containers is centered */

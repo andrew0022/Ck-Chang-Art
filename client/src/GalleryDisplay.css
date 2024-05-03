@@ -136,7 +136,7 @@ body, .container {
   align-self: center;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 750px) {
   body, html {
     width: 100%; /* Ensures the body and html take full width */
     max-width: 100%; /* Prevents any element from exceeding the screen width */

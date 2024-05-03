@@ -43,15 +43,36 @@ const About = () => {
     if (location.pathname === '/about') {
       // Determine the amount to scroll based on screen size
       const screenSize = window.innerHeight;
+      const screenWidth = window.innerWidth;
       let scrollAmount;
+
+      if (screenWidth <= 499){
+        scrollAmount = 250;
+      }
       
-      if (screenSize <= 600) { // For mobile devices
-        scrollAmount = 100; // Adjust this value based on your layout and needs
-      } else if (screenSize <= 1024) { // For tablets
+      if(screenWidth >= 500){
+      if (screenSize <= 100) { // For mobile devices
+        scrollAmount = 100; // Adjust this value based on your layout and needs\
+      } else if (screenSize <= 500) { // For tablets
+        scrollAmount = 300; // Adjust this value based on your layout and needs
+      }else if (screenSize <= 600) { // For tablets
+        scrollAmount = 400; // Adjust this value based on your layout and needs
+      }else if (screenSize <= 700) { // For tablets
         scrollAmount = 600; // Adjust this value based on your layout and needs
+      } else if (screenSize <= 800) { // For tablets
+        scrollAmount = 600; // Adjust this value based on your layout and needs
+      } else if (screenSize <= 900) { // For tablets
+        scrollAmount = 700; // Adjust this value based on your layout and needs
+      } else if (screenSize <= 1000) { // For tablets
+        scrollAmount = 800; // Adjust this value based on your layout and needs
+      } else if (screenSize <= 1100) { // For tablets
+        scrollAmount = 900; // Adjust this value based on your layout and needs
+      }  else if (screenSize <= 1200) { // For tablets
+        scrollAmount = 1000; // Adjust this value based on your layout and needs
       } else { // For desktops
         scrollAmount = 500; // Adjust this value based on your layout and needs
       }
+    }
 
       // Scroll to the calculated position after a brief delay
       setTimeout(() => {
