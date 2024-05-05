@@ -116,10 +116,11 @@
   box-sizing: border-box;
 }
 
+
 .image-item img {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
+  object-fit: cover; /* You can choose 'cover', 'contain', or other values based on your preference */
 }
 
 .admin-login {
