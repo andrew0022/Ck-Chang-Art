@@ -35,15 +35,15 @@ function LoginRegister() {
     <div>
       <Header></Header>
       <div className="login-register-container">
-        <h2 className="login-form-title">{isLogin ? 'Login' : 'Register'}</h2>
+        <h2 className="login-form-title">{'Login'}</h2>
         <form onSubmit={handleSubmit} className="login-register-form">
           <input type="text" placeholder="Username" required value={username} onChange={(e) => setUsername(e.target.value)} className="login-form-input" />
           <input type="password" placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)} className="login-form-input" />
           <button type="submit" className="login-form-submit">{isLogin ? 'Login' : 'Register'}</button>
         </form>
-        <button onClick={() => setIsLogin(!isLogin)} className="switch-button">
+        {/* <button onClick={() => setIsLogin(!isLogin)} className="switch-button">
           {isLogin ? 'No account? Register Here' : 'Already have an account? Login Here'}
-        </button>
+        </button> */}
       </div>
     </div>
   );
